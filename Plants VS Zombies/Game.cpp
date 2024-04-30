@@ -1,12 +1,13 @@
 #include "Game.h"
+#include "LoadingScreen.h"
 
 Game::Game()
 {
-	window = new sf::RenderWindow(sf::VideoMode(1066, 600), "Plants VS Zombies");
+	window = new sf::RenderWindow(sf::VideoMode(1000, 600), "Plants VS Zombies");
 	//screens;
 	top = -1;
 }
-void Game::PushScreen(Screen& screen) {
+void Game::PushScreen(Screen *screen) {
 	top++; // go one level up
 	screens[top] = screen; // add the new screen to the top of the screen stack
 }
@@ -21,7 +22,7 @@ sf::RenderWindow* Game::GetWindow() const
 	return window;
 }
 
-Screen& Game::GetScreen()
+Screen* Game::GetScreen()
 {
 	return screens[top];
 	// TODO: insert return statement here
@@ -40,29 +41,31 @@ Game::~Game()
 	}*/
 }
 
-void Game::draw()
+void Game::Draw()
 {
-	GetScreen().Draw();
+	GetScreen()->Draw();
 }
 
-void Game::update()
+void Game::Update()
 {
-	GetScreen().Update();
+	GetScreen()->Update();
 }
 
-void Game::run()
+void Game::Run()
 {
-	sf::Sprite bg;
-	sf::Texture bgT;
-	bgT.loadFromFile("Images/titlescreen.jpg");
-	bg.setTexture(bgT);
-	Screen screen(window, bg);
-	PushScreen(screen);
+	//sf::Sprite bg;
+	//sf::Texture bgT;
+	//bgT.loadFromFile("Images/titlescreen.jpg");
+	//bg.setTexture(bgT);
+	//Screen screen(window, bg);
+	//PushScreen(screen);
+	Screen *loadingScreen = new LoadingScreen(window);
+	PushScreen(loadingScreen);
 	sf::Event e;
 	while (window->isOpen()) {
 		
-		update();
-		draw();
+		Update();
+		Draw();
 		while (window->pollEvent(e)) {
 			if (e.type == sf::Event::Closed) {
 				return;

@@ -3,7 +3,7 @@
 using namespace std;
 int main() {
 	Game game;
-	game.run();
+	game.Run();
 	return 0;
 }
 //#include <SFML/Graphics.hpp>
