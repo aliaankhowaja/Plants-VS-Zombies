@@ -13,6 +13,8 @@ private:
 	sf::Texture lbgTexture;
 	sf::Sprite sodRoll;
 	sf::Texture sodRollTexture;
+	sf::Sprite logo;
+	sf::Texture logoTexture;
 	sf::Text start;
 	sf::Font font;
 public: 
