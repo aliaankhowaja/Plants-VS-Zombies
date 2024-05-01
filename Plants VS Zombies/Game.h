@@ -20,5 +20,7 @@ public:
 	void Draw();
 	string Update();
 	void Run();
+	void ShowMainMenu();
+	void ShowGameScreen();
 };
 

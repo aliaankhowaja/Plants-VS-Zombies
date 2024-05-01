@@ -5,7 +5,7 @@ class LoadingScreen :public Screen
 private:
 	static int updated;
 	int progress;
-	sf::Texture bgTexture;
+	//sf::Texture bgTexture;
 	//sf::Texture daizyTexture;
 	sf::Sprite loadbarDirt;
 	sf::Texture lbdTexture;

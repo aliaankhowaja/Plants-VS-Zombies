@@ -7,6 +7,7 @@ class Screen
 protected:
 	sf::RenderWindow *window;
 	sf::Sprite background;
+	sf::Texture bgTexture;
 public:
 	Screen();
 	virtual string Update() = 0;

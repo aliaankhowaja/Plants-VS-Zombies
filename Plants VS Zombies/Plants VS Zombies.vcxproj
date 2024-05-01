@@ -143,12 +143,14 @@
     <ClCompile Include="Graphics.cpp" />
     <ClCompile Include="LoadingScreen.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="MainMenuScreen.cpp" />
     <ClCompile Include="Screen.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h" />
     <ClInclude Include="Graphics.h" />
     <ClInclude Include="LoadingScreen.h" />
+    <ClInclude Include="MainMenuScreen.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="Screen.h" />
   </ItemGroup>

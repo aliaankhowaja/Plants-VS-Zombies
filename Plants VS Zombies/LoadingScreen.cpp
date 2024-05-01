@@ -38,8 +38,7 @@ void LoadingScreen::Draw() const {
 	window->draw(loadbarDirt);
 	window->draw(loadbarGrass);
 	if (progress < 100) window->draw(sodRoll);
-	//if (progress == 100) 
-		window->draw(start);
+	if (progress == 100) window->draw(start);
 	//else window->draw(start);
 }
 
@@ -59,7 +58,7 @@ string LoadingScreen::Update() {
 	sf::Event e;
 	while (window->pollEvent(e)) {
 		if (e.type == sf::Event::MouseButtonPressed && progress == 100) {
-			return "StartGame";
+			return "LoadingComplete";
 		}
 	}
 	return "";

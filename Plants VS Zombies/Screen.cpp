@@ -7,6 +7,7 @@
 
 Screen::Screen()
 {
+
 }
 
 //void Screen::Update()

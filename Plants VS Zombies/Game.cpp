@@ -1,5 +1,7 @@
 #include "Game.h"
 #include "LoadingScreen.h"
+#include "MainMenuScreen.h"
+#include <iostream>
 
 Game::Game()
 {
@@ -14,6 +16,7 @@ void Game::PushScreen(Screen *screen) {
 
 void Game::PopScreen() {
 	if (top+1) return;//if no screen present
+	delete screens[top];
 	top--;
 }
 
@@ -65,6 +68,8 @@ void Game::Run()
 	while (window->isOpen()) {
 		
 		string command = Update();
+		if (command == "LoadingComplete") ShowMainMenu();
+		else if (command == "StartGame") ShowGameScreen();
 		Draw();
 		while (window->pollEvent(e)) {
 			if (e.type == sf::Event::Closed) {
@@ -75,4 +80,15 @@ void Game::Run()
 		window->clear();
 
 	}
+}
+
+void Game::ShowMainMenu()
+{
+	Screen* mainMenu = new MainMenuScreen(window);
+	PopScreen();
+	PushScreen(mainMenu);
+}
+
+void Game::ShowGameScreen() {
+
 }
