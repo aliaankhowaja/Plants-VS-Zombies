@@ -13,7 +13,14 @@ LoadingScreen::LoadingScreen(sf::RenderWindow *window)
 
 	loadbarDirt.setTexture(lbdTexture);
 	loadbarDirt.setPosition(350, 520);
-	
+
+
+	logoTexture.loadFromFile("Resources/Images/PvZ_logo.png");
+	logo.setTexture(logoTexture);
+	logo.setPosition(150, 10);
+
+
+
 	lbgTexture.loadFromFile("Resources/Images/LoadbarGrass.png");
 	loadbarGrass.setTexture(lbgTexture);
 	loadbarGrass.setPosition(350, 500);
@@ -35,6 +42,7 @@ LoadingScreen::LoadingScreen(sf::RenderWindow *window)
 
 void LoadingScreen::Draw() const {
 	window->draw(background);
+	window->draw(logo);
 	window->draw(loadbarDirt);
 	window->draw(loadbarGrass);
 	if (progress < 100) window->draw(sodRoll);
