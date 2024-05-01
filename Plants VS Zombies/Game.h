@@ -18,7 +18,7 @@ public:
 	Screen* GetScreen(); // returns the top most Screen
 	void CloseGame();
 	void Draw();
-	void Update();
+	string Update();
 	void Run();
 };
 

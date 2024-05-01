@@ -4,18 +4,20 @@ class LoadingScreen :public Screen
 {
 private:
 	static int updated;
-	int loading;
+	int progress;
 	sf::Texture bgTexture;
-	sf::Texture daizy;
+	//sf::Texture daizyTexture;
 	sf::Sprite loadbarDirt;
 	sf::Texture lbdTexture;
 	sf::Sprite loadbarGrass;
 	sf::Texture lbgTexture;
 	sf::Sprite sodRoll;
 	sf::Texture sodRollTexture;
+	sf::Text start;
+	sf::Font font;
 public: 
 	LoadingScreen(sf::RenderWindow *window);
 	void Draw() const;
-	void Update();
+	string Update();
 };
 

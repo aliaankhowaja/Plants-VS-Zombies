@@ -13,7 +13,7 @@ void Game::PushScreen(Screen *screen) {
 }
 
 void Game::PopScreen() {
-	if (!top) return;//if no screen present
+	if (top+1) return;//if no screen present
 	top--;
 }
 
@@ -46,16 +46,16 @@ void Game::Draw()
 	GetScreen()->Draw();
 }
 
-void Game::Update()
+string Game::Update()
 {
-	GetScreen()->Update();
+	return GetScreen()->Update();
 }
 
 void Game::Run()
 {
 	//sf::Sprite bg;
 	//sf::Texture bgT;
-	//bgT.loadFromFile("Images/titlescreen.jpg");
+	//bgT.loadFromFile("Resources/Images/titlescreen.jpg");
 	//bg.setTexture(bgT);
 	//Screen screen(window, bg);
 	//PushScreen(screen);
@@ -64,7 +64,7 @@ void Game::Run()
 	sf::Event e;
 	while (window->isOpen()) {
 		
-		Update();
+		string command = Update();
 		Draw();
 		while (window->pollEvent(e)) {
 			if (e.type == sf::Event::Closed) {
