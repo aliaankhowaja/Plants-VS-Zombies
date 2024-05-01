@@ -14,7 +14,7 @@ void MainMenuScreen::Draw() const
 
 string MainMenuScreen::Update()
 {
-	return "";
-	//return "StartGame";
+	//return "";
+	return "StartGame";
 }
 

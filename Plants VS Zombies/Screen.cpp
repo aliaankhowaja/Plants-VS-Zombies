@@ -5,10 +5,10 @@
 //	//this->window = screen.window;
 //}
 
-Screen::Screen()
-{
-
-}
+//Screen::Screen()
+//{
+//
+//}
 
 //void Screen::Update()
 //{

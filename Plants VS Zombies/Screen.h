@@ -9,7 +9,7 @@ protected:
 	sf::Sprite background;
 	sf::Texture bgTexture;
 public:
-	Screen();
+	//Screen();
 	virtual string Update() = 0;
 	virtual void Draw() const = 0;
 	//void operator=(Screen& screen);
