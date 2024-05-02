@@ -1,6 +1,7 @@
 #include "Game.h"
 #include "LoadingScreen.h"
 #include "MainMenuScreen.h"
+#include"HelpScreen.h"
 #include <iostream>
 
 Game::Game()
