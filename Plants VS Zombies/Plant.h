@@ -6,11 +6,12 @@ class Plant
 {
 protected:
 	string name;
-	sf::Sprite plantSprite;
-	sf::Texture plantTexture;
+	sf::Sprite sprite;
+	sf::Texture texture;
 	int animation, sunLight, health;
 	const int row, column, height, width;
 public:
+	Plant(int row, int column);
 	virtual void GetDamage() = 0;
 	virtual void Act() = 0;
 	sf::Sprite& GetSprite();

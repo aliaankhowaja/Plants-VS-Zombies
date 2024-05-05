@@ -1,6 +1,7 @@
 #include "Game.h"
 #include "LoadingScreen.h"
 #include "MainMenuScreen.h"
+#include "BeginnersGarden.h"
 #include <iostream>
 
 Game::Game()
@@ -56,20 +57,16 @@ string Game::Update()
 
 void Game::Run()
 {
-	//sf::Sprite bg;
-	//sf::Texture bgT;
-	//bgT.loadFromFile("Resources/Images/titlescreen.jpg");
-	//bg.setTexture(bgT);
-	//Screen screen(window, bg);
-	//PushScreen(screen);
-	Screen *loadingScreen = new LoadingScreen(window);
-	PushScreen(loadingScreen);
+	//Screen *loadingScreen = new LoadingScreen(window);
+	//PushScreen(loadingScreen);
+	ShowGameScreen();
+
 	sf::Event e;
 	while (window->isOpen()) {
 		
 		string command = Update();
-		if (command == "LoadingComplete") ShowMainMenu();
-		else if (command == "StartGame") ShowGameScreen();
+		//if (command == "LoadingComplete") ShowMainMenu();
+		//else if (command == "StartGame") ShowGameScreen();
 		Draw();
 		while (window->pollEvent(e)) {
 			if (e.type == sf::Event::Closed) {
@@ -90,7 +87,7 @@ void Game::ShowMainMenu()
 }
 
 void Game::ShowGameScreen() {
-	Screen* level1 = new MainMenuScreen(window);
+	Screen* level1 = new BeginnersGarden(window);
 	//PopScreen();
 	PushScreen(level1);
 }

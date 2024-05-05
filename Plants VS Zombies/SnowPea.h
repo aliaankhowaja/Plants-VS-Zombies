@@ -1,11 +1,10 @@
 #pragma once
 #include "Plant.h"
-class PeaShooter : public Plant {
-protected:
-	bool shooting;
+class SnowPea : public Plant
+{
+private:int upfd;
 public:
-	PeaShooter(int row, int col);
-	virtual void Shoot();
+	SnowPea(int row, int column);
 	virtual void GetDamage();
 	virtual void Act();
 	virtual void Update();
