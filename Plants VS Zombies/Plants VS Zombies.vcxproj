@@ -139,6 +139,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="BeginnersGarden.cpp" />
+    <ClCompile Include="CherryBomb.cpp" />
+    <ClCompile Include="FumeShroom.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Graphics.cpp" />
     <ClCompile Include="HelpScreen.cpp" />
@@ -148,10 +151,18 @@
     <ClCompile Include="MainMenuScreen.cpp" />
     <ClCompile Include="PeaShooter.cpp" />
     <ClCompile Include="Plant.cpp" />
+    <ClCompile Include="PlantFactory.cpp" />
+    <ClCompile Include="Repeater.cpp" />
     <ClCompile Include="Screen.cpp" />
+    <ClCompile Include="SnowPea.cpp" />
+    <ClCompile Include="SunFlower.cpp" />
+    <ClCompile Include="Wallnut.cpp" />
     <ClCompile Include="Zombie.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BeginnersGarden.h" />
+    <ClInclude Include="CherryBomb.h" />
+    <ClInclude Include="FumeShroom.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Graphics.h" />
     <ClInclude Include="HelpScreen.h" />
@@ -160,8 +171,14 @@
     <ClInclude Include="MainMenuScreen.h" />
     <ClInclude Include="PeaShooter.h" />
     <ClInclude Include="Plant.h" />
+    <ClInclude Include="PlantFactory.h" />
+    <ClInclude Include="Repeater.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="Screen.h" />
+    <ClInclude Include="SnowPea.h" />
+    <ClInclude Include="structures.h" />
+    <ClInclude Include="SunFlower.h" />
+    <ClInclude Include="Wallnut.h" />
     <ClInclude Include="Zombie.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
