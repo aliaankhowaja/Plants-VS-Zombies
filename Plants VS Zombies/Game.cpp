@@ -93,5 +93,5 @@ void Game::ShowMainMenu()
 void Game::ShowGameScreen() {
 	Screen* level1 = new MainMenuScreen(window);
 	//PopScreen();
-	PushScreen(level1);
+	//PushScreen(level1);
 }
