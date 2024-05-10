@@ -58,10 +58,13 @@ string Game::Update()
 
 void Game::Run()
 {
-	//Screen *loadingScreen = new LoadingScreen(window);
-	//PushScreen(loadingScreen);
+	Screen *loadingScreen = new LoadingScreen(window);
+	PushScreen(loadingScreen);
+	//ShowMainMenu();
 	ShowGameScreen();
-
+	
+	//ShowGameScreen();
+	
 	sf::Event e;
 	while (window->isOpen()) {
 		
@@ -89,6 +92,6 @@ void Game::ShowMainMenu()
 
 void Game::ShowGameScreen() {
 	Screen* level1 = new BeginnersGarden(window);
-	//PopScreen();
-	//PushScreen(level1);
+	PopScreen();
+	PushScreen(level1);
 }

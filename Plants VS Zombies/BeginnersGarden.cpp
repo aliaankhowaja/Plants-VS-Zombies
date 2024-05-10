@@ -1,9 +1,12 @@
 #include "BeginnersGarden.h"
+
 #include <iostream>
 BeginnersGarden::BeginnersGarden(sf::RenderWindow* window)
 {
 	plantFactory = new PlantFactory(7, window);
 	updated = 0;
+	
+
 	this->window = window;
 	bgTexture.loadFromFile("Resources/Images/BeginnersGardenBackground.png");
 	background.setTexture(bgTexture);
