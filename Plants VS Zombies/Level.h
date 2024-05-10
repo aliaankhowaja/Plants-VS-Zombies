@@ -5,6 +5,7 @@
 #include "SFML/Window/Mouse.hpp"
 #include "structures.h"
 #include "Bullet.h"
+#include "Zombie.h"
 class Level :public Screen
 {
 protected:
@@ -16,6 +17,7 @@ protected:
 	int zombieRows[rows];
 	BulletContainer *bullets[6];
 	int bulletRows[6];
+	Zombie* zombie;
 	//Grid* grid;
 public:
 	Level();

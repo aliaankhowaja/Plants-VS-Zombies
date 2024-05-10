@@ -5,5 +5,8 @@ class SimlpleZombie :
 {
 public:
     SimlpleZombie();
+    virtual void Update();
+    virtual void GetDps();
+    virtual void Act();
 };
 

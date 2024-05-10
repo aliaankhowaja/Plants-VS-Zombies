@@ -6,7 +6,7 @@ class DancingZombie :
 private:
 public:
    DancingZombie();
-   void Update();
-   void Act();
+   //void Update();
+   //void Act();
 };
 

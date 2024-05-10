@@ -1,5 +1,5 @@
 #include "BeginnersGarden.h"
-
+#include "SimlpleZombie.h"
 #include <iostream>
 BeginnersGarden::BeginnersGarden(sf::RenderWindow* window)
 {
@@ -8,7 +8,7 @@ BeginnersGarden::BeginnersGarden(sf::RenderWindow* window)
 	plantFactory = new PlantFactory(2, window);
 	updated = 0;
 	
-
+	zombie = new SimlpleZombie();
 	this->window = window;
 	bgTexture.loadFromFile("Resources/Images/BeginnersGardenBackground.png");
 	background.setTexture(bgTexture);
@@ -70,6 +70,7 @@ void BeginnersGarden::Draw() const
 	DrawPlants();
 	plantFactory->Draw();
 	DrawBullets();
+	window->draw(zombie->GetSprite());
 	//if (bullet) window->draw(bullet->GetSprite());
 	
 	//for (int i = 0; i < plantFactory->GetNumPlants(); i++) {

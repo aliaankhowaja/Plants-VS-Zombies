@@ -58,7 +58,7 @@ string Game::Update()
 
 void Game::Run()
 {
-	Screen *loadingScreen = new LoadingScreen(window);
+	//Screen *loadingScreen = new LoadingScreen(window);
 	//PushScreen(loadingScreen);
 	ShowGameScreen();
 	
@@ -91,6 +91,6 @@ void Game::ShowMainMenu()
 
 void Game::ShowGameScreen() {
 	Screen* level1 = new BeginnersGarden(window);
-	PopScreen();
+	//PopScreen();
 	PushScreen(level1);
 }
