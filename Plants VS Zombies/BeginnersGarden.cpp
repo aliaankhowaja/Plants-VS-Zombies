@@ -1,4 +1,5 @@
 #include "BeginnersGarden.h"
+
 #include <iostream>
 BeginnersGarden::BeginnersGarden(sf::RenderWindow* window)
 {
@@ -6,6 +7,8 @@ BeginnersGarden::BeginnersGarden(sf::RenderWindow* window)
 	zombieRows[3] = 2;
 	plantFactory = new PlantFactory(2, window);
 	updated = 0;
+	
+
 	this->window = window;
 	bgTexture.loadFromFile("Resources/Images/BeginnersGardenBackground.png");
 	background.setTexture(bgTexture);

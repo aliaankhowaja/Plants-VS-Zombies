@@ -1,5 +1,6 @@
 #pragma once
 #include "Level.h"
+#include"SimlpleZombie.h"
 class BeginnersGarden :public Level
 {
 private:
