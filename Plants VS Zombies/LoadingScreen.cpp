@@ -6,7 +6,7 @@ LoadingScreen::LoadingScreen(sf::RenderWindow *window)
 {
 	progress = 0;
 	this->window = window;
-	//std::cout << window->getSize().x <<", " << window->getSize().y<<std::endl;
+	//std:://cout << window->getSize().x <<", " << window->getSize().y<<std::endl;
 	bgTexture.loadFromFile("Resources/Images/titlescreen.jpg");
 	background. setTexture(bgTexture);
 	lbdTexture.loadFromFile("Resources/Images/LoadbarDirt.png");
@@ -71,5 +71,5 @@ string LoadingScreen::Update() {
 	}
 	return "";
 
-	//std::cout << window->getSize().x << ", " << window->getSize().y << std::endl;
+	//std:://cout << window->getSize().x << ", " << window->getSize().y << std::endl;
 }

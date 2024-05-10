@@ -6,7 +6,7 @@ private:int upfd;
 public:
 	FumeShroom(int row, int column);
 	virtual void GetDamage();
-	virtual void Act();
+	virtual bool Act();
 	virtual void Update();
 };
 

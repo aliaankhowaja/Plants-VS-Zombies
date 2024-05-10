@@ -2,12 +2,14 @@
 #include <iostream>
 BeginnersGarden::BeginnersGarden(sf::RenderWindow* window)
 {
-	plantFactory = new PlantFactory(7, window);
+	zombieRows[1] = 2;
+	zombieRows[3] = 2;
+	plantFactory = new PlantFactory(2, window);
 	updated = 0;
 	this->window = window;
 	bgTexture.loadFromFile("Resources/Images/BeginnersGardenBackground.png");
 	background.setTexture(bgTexture);
-	background.setTextureRect(sf::IntRect(115, 0, 1000, 600));
+	background.setTextureRect(sf::IntRect(25, 0, 1000, 600));
 
 }
 
@@ -16,7 +18,8 @@ string BeginnersGarden::Update()
 	int mouseX = sf::Mouse::getPosition(*window).x;
 	int mouseY = sf::Mouse::getPosition(*window).y;
 	int row = (mouseY - 80) / 100;
-	int col = (mouseX - 260) / 80;
+	int col = (mouseX - 230) / 80;
+	//cout << mouseX << ", " << mouseY << endl;
 	//if (plantFactory->IsPlantSelected()) {
 		//cursor->SetPosition(mouseX-36, mouseY-36);
 	//}
@@ -29,6 +32,9 @@ string BeginnersGarden::Update()
 			}
 			else if(plantFactory->InGrid() && !plants[row][col]) {
 				plants[row][col] = plantFactory->NewPlant(mouseX, mouseY);
+				//if (plants[row][col]->GetName() == "PeaShooter") {
+					//NewBullet(290 + col * 80, row);
+				//}
 			}
 		}
 		if (e.type == sf::Event::KeyPressed && 
@@ -40,8 +46,18 @@ string BeginnersGarden::Update()
 	}
 	plantFactory->Update();
 	UpdatePlants();
-	//if(updated<500)updated++;
-	//background.setTextureRect(sf::IntRect(115, 0, 1000, 600));
+	UpdateBullets();
+	//if (bullet)
+	//{	
+		//bullet->Update();
+		//if (bullet->GetX() > 950) 
+		//{
+			//delete bullet;
+			//bullet = nullptr;
+		//}
+	//}
+	Shoot();
+
 	return "";
 }
 
@@ -50,8 +66,12 @@ void BeginnersGarden::Draw() const
 	window->draw(background);
 	DrawPlants();
 	plantFactory->Draw();
+	DrawBullets();
+	//if (bullet) window->draw(bullet->GetSprite());
 	
 	//for (int i = 0; i < plantFactory->GetNumPlants(); i++) {
 	//	window->draw(plantFactory->GetCard(i));
 	//}
 }
+
+

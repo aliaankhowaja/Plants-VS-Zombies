@@ -8,3 +8,8 @@ sf::Sprite& Plant::GetSprite()
 {
 	return sprite;
 }
+
+string Plant::GetName() const
+{
+	return name;
+}

@@ -80,8 +80,8 @@ void PlantFactory::Update()
 	if (InGrid()) {
 		int w = 80;
 		int row = (mouseY - 80) / 100;
-		int col = (mouseX - 260) / 80;
-		gridSprite.setPosition(277 + col * 80, 90 + row * 100);
+		int col = (mouseX - 230) / 80;
+		gridSprite.setPosition(238 + col * 80, 90 + row * 100);
 	}
 }
 
@@ -91,7 +91,7 @@ void PlantFactory::Draw() const
 	int mouseY = sf::Mouse::getPosition(*window).y;
 	window->draw(cardsSprite);
 	int row = (mouseY - 80) / 100;
-	int col = (mouseX - 260) / 80;
+	int col = (mouseX - 230) / 80;
 	if(InGrid() && plantSelected && !plants[row][col]) window->draw(gridSprite);
 	if (plantSelected ) {
 		window->draw(cursor.sprite);
@@ -102,16 +102,16 @@ bool PlantFactory::InGrid() const
 {
 	int mouseX = sf::Mouse::getPosition(*window).x;
 	int mouseY = sf::Mouse::getPosition(*window).y;
-	bool inGrid = mouseX > 280 && mouseX < 985 && mouseY > 90 && mouseY < 560;
+	bool inGrid = mouseX > 230 && mouseX < 985 && mouseY > 90 && mouseY < 560;
 	return inGrid;
 }
 
 Plant* PlantFactory::NewPlant(int mouseX, int mouseY)
 {
 	int row = (mouseY - 80) / 100;
-	int col = (mouseX - 260) / 80;
+	int col = (mouseX - 230) / 80;
 	Plant* plant = nullptr;
-	cout << selectedPlant << endl;
+	//cout << selectedPlant << endl;
 	switch (selectedPlant)
 	{
 	case 0:

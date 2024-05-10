@@ -4,6 +4,7 @@
 #include "PlantFactory.h"
 #include "SFML/Window/Mouse.hpp"
 #include "structures.h"
+#include "Bullet.h"
 class Level :public Screen
 {
 protected:
@@ -12,6 +13,9 @@ protected:
 	string type;
 	Plant* plants[rows][columns];
 	PlantFactory* plantFactory;
+	int zombieRows[rows];
+	BulletContainer *bullets[6];
+	int bulletRows[6];
 	//Grid* grid;
 public:
 	Level();
@@ -21,5 +25,9 @@ public:
 	void UpdatePlants();
 	virtual string Update() = 0;
 	virtual void Draw() const = 0;
+	void NewBullet(int x, int row);
+	void DrawBullets() const;
+	void UpdateBullets();
+	void Shoot();
 };
 

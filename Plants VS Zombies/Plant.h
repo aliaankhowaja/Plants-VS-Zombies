@@ -10,11 +10,13 @@ protected:
 	sf::Texture texture;
 	int animation, sunLight, health;
 	const int row, column, height, width;
+	sf::Clock clock;
 public:
 	Plant(int row, int column);
 	virtual void GetDamage() = 0;
-	virtual void Act() = 0;
+	virtual bool Act() = 0;
 	sf::Sprite& GetSprite();
+	string GetName() const;
 	virtual void Update() = 0;
 
 };

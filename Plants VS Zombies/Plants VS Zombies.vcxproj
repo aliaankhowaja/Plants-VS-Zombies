@@ -140,6 +140,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="BeginnersGarden.cpp" />
+    <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="CherryBomb.cpp" />
     <ClCompile Include="FumeShroom.cpp" />
     <ClCompile Include="Game.cpp" />
@@ -154,6 +155,7 @@
     <ClCompile Include="PlantFactory.cpp" />
     <ClCompile Include="Repeater.cpp" />
     <ClCompile Include="Screen.cpp" />
+    <ClCompile Include="SnowBullet.cpp" />
     <ClCompile Include="SnowPea.cpp" />
     <ClCompile Include="SunFlower.cpp" />
     <ClCompile Include="Wallnut.cpp" />
@@ -161,6 +163,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BeginnersGarden.h" />
+    <ClInclude Include="Bullet.h" />
     <ClInclude Include="CherryBomb.h" />
     <ClInclude Include="FumeShroom.h" />
     <ClInclude Include="Game.h" />
@@ -175,6 +178,7 @@
     <ClInclude Include="Repeater.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="Screen.h" />
+    <ClInclude Include="SnowBullet.h" />
     <ClInclude Include="SnowPea.h" />
     <ClInclude Include="structures.h" />
     <ClInclude Include="SunFlower.h" />

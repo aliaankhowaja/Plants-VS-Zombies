@@ -9,7 +9,7 @@ HelpScreen::HelpScreen(sf::RenderWindow* window) {
 	Paper.setPosition(173, 51.5);
 	WritingTexture.loadFromFile("Resources/Images/Help/Untitled-1.png");
 	Writing.setTexture(WritingTexture);
-	Writing.setPosition(235.5, 103.5);
+	Writing.setPosition(238.5, 103.5);
 	ButtonTexture.loadFromFile("Resources/Images/Help/SeedChooser_Button.png");
 	Button.setTexture(ButtonTexture);
 	Button.setPosition(422, 500);

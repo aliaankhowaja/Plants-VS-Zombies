@@ -58,7 +58,7 @@ string Game::Update()
 
 void Game::Run()
 {
-	//Screen *loadingScreen = new LoadingScreen(window);
+	Screen *loadingScreen = new LoadingScreen(window);
 	//PushScreen(loadingScreen);
 	ShowGameScreen();
 
@@ -68,14 +68,14 @@ void Game::Run()
 		string command = Update();
 		//if (command == "LoadingComplete") ShowMainMenu();
 		//else if (command == "StartGame") ShowGameScreen();
-		Draw();
 		while (window->pollEvent(e)) {
 			if (e.type == sf::Event::Closed) {
 				return;
 			}
 		}
-		window->display();
 		window->clear();
+		Draw();
+		window->display();
 
 	}
 }
