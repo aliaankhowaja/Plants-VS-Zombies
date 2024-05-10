@@ -3,7 +3,7 @@ SimlpleZombie::SimlpleZombie() {
 	name = "simple zombie";
 	health = 500;
 	dps = 50;
-	ZombieTexture.loadFromFile("Resources/Images/zombies/normalZombie.png");
+	ZombieTexture.loadFromFile("Resources/Images/zombiesd/normalZombie.png");
 	ZombieSprite.setTexture(ZombieTexture);
 	sf::IntRect source(0, 0, 144, 144);
 	ZombieSprite.setTextureRect(source);
