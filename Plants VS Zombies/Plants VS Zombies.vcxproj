@@ -139,6 +139,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AddPlayerBlock.cpp" />
     <ClCompile Include="BeginnersGarden.cpp" />
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="CherryBomb.cpp" />
@@ -154,9 +155,11 @@
     <ClCompile Include="LoadingScreen.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MainMenuScreen.cpp" />
+    <ClCompile Include="PausedGame.cpp" />
     <ClCompile Include="PeaShooter.cpp" />
     <ClCompile Include="Plant.cpp" />
     <ClCompile Include="PlantFactory.cpp" />
+    <ClCompile Include="QuitScreen.cpp" />
     <ClCompile Include="Repeater.cpp" />
     <ClCompile Include="Screen.cpp" />
     <ClCompile Include="SimlpleZombie.cpp" />
@@ -170,6 +173,7 @@
     <ClCompile Include="ZombieFactory.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AddPlayerBlock.h" />
     <ClInclude Include="BeginnersGarden.h" />
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="CherryBomb.h" />
@@ -184,9 +188,11 @@
     <ClInclude Include="Level.h" />
     <ClInclude Include="LoadingScreen.h" />
     <ClInclude Include="MainMenuScreen.h" />
+    <ClInclude Include="PausedGame.h" />
     <ClInclude Include="PeaShooter.h" />
     <ClInclude Include="Plant.h" />
     <ClInclude Include="PlantFactory.h" />
+    <ClInclude Include="QuitScreen.h" />
     <ClInclude Include="Repeater.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="Screen.h" />
