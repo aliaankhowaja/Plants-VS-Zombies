@@ -12,24 +12,28 @@ public:
 	static int bulletID;
 	Bullet();
 	Bullet(int x, int row);
-	sf::Sprite& GetSprite();
+	sf::Sprite& GetSprite() ;
 	int GetRow() const;
 	int GetX() const;
 	int GetID() const;
+	void Revive();
+	void SetPosition(int column, int  row);
+	bool GetExists() const;
 	static void SetID();
+
 	bool Update();
 	~Bullet();
 };
 
-struct BulletContainer {
-	Bullet* bullet;
-	BulletContainer* nextBullet;
-	BulletContainer(int x,int row) {
-		bullet = new Bullet(x, row);
-		nextBullet = nullptr;
-	}
-	void NewBullet(int x, int row) {
-		nextBullet = new BulletContainer(x, row);
-	}
-
-};
+//struct BulletContainer {
+//	Bullet* bullet;
+//	BulletContainer* nextBullet;
+//	BulletContainer(int x,int row) {
+//		bullet = new Bullet(x, row);
+//		nextBullet = nullptr;
+//	}
+//	void NewBullet(int x, int row) {
+//		nextBullet = new BulletContainer(x, row);
+//	}
+//
+//};

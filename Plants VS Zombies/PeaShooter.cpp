@@ -1,5 +1,6 @@
 #include "PeaShooter.h"
-
+#include <iostream>
+using namespace std;
 PeaShooter::PeaShooter(int row, int col) : Plant(row, col)
 {
 	animation = 0;
@@ -25,9 +26,10 @@ void PeaShooter::GetDamage()
 
 bool PeaShooter::Act()
 {
-	Shoot();
+	shooting = true;
 	if ((int)clock.getElapsedTime().asSeconds() / 2) 
 	{
+		//cout << "fd" <<endl;
 		clock.restart();
 		return true;
 	}

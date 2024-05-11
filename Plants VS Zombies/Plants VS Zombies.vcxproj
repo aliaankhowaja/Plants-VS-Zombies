@@ -150,6 +150,7 @@
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Graphics.cpp" />
     <ClCompile Include="HelpScreen.cpp" />
+    <ClCompile Include="LawnMover.cpp" />
     <ClCompile Include="Level.cpp" />
     <ClCompile Include="LoadingScreen.cpp" />
     <ClCompile Include="main.cpp" />
@@ -162,6 +163,8 @@
     <ClCompile Include="SimlpleZombie.cpp" />
     <ClCompile Include="SnowBullet.cpp" />
     <ClCompile Include="SnowPea.cpp" />
+    <ClCompile Include="Sun.cpp" />
+    <ClCompile Include="SunFactory.cpp" />
     <ClCompile Include="SunFlower.cpp" />
     <ClCompile Include="Wallnut.cpp" />
     <ClCompile Include="Zombie.cpp" />
@@ -179,6 +182,7 @@
     <ClInclude Include="Game.h" />
     <ClInclude Include="Graphics.h" />
     <ClInclude Include="HelpScreen.h" />
+    <ClInclude Include="LawnMover.h" />
     <ClInclude Include="Level.h" />
     <ClInclude Include="LoadingScreen.h" />
     <ClInclude Include="MainMenuScreen.h" />
@@ -192,6 +196,8 @@
     <ClInclude Include="SnowBullet.h" />
     <ClInclude Include="SnowPea.h" />
     <ClInclude Include="structures.h" />
+    <ClInclude Include="Sun.h" />
+    <ClInclude Include="SunFactory.h" />
     <ClInclude Include="SunFlower.h" />
     <ClInclude Include="Wallnut.h" />
     <ClInclude Include="Zombie.h" />

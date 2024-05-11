@@ -3,7 +3,7 @@
 SunFlower::SunFlower(int row, int column) : Plant(row, column)
 {
 	animation = 0;
-	name = "SunFolwer";
+	name = "SunFlower";
 	texture.loadFromFile("Resources/Images/suns.png");
 	sprite.setTexture(texture);
 	sprite.setTextureRect(sf::IntRect(0, 0, width-5, height));
@@ -18,6 +18,12 @@ void SunFlower::GetDamage()
 
 bool SunFlower::Act()
 {
+	if ((int)clock.getElapsedTime().asSeconds() / 10)
+	{
+		//cout << "fd" <<endl;
+		clock.restart();
+		return true;
+	}
 	return false;
 }
 

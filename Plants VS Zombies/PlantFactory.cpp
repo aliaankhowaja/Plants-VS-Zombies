@@ -11,6 +11,7 @@
 
 PlantFactory::PlantFactory(int numPlants, sf::RenderWindow *window)
 {
+	suns = 0;
 	selectedPlant = 0;
 	this->window = window;
 	plantSelected = false;
@@ -18,7 +19,13 @@ PlantFactory::PlantFactory(int numPlants, sf::RenderWindow *window)
 	cardsTexture.loadFromFile("Resources/Images/cards.png");
 	cardsSprite.setTexture(cardsTexture);
 	cardsSprite.setTextureRect(sf::IntRect(0, 0, 110, numPlants * 70));
-	
+	invalidColor = sf::Color(0, 0, 0, 100);
+	validColor = sf::Color::Transparent;
+	for (int i = 0; i < numPlants; i++) {
+		cardInvalid[i].setSize(sf::Vector2f(110, 70));
+		cardInvalid[i].setFillColor(invalidColor);
+		cardInvalid[i].setPosition(0, 70 * i);
+	}
 }
 
 int PlantFactory::GetNumPlants()
@@ -83,6 +90,37 @@ void PlantFactory::Update()
 		int col = (mouseX - 230) / 80;
 		gridSprite.setPosition(238 + col * 80, 90 + row * 100);
 	}
+	if (suns >= 200) {
+		for (int i = 0; i < numPlants; i++) {
+			cardInvalid[i].setFillColor(validColor);
+		}
+	} else if (suns >= 150) {
+		for (int i = 0; i < numPlants; i++) {
+			cardInvalid[i].setFillColor(validColor);
+		}cardInvalid[4].setFillColor(invalidColor);
+	} else if (suns >= 100) {
+		for (int i = 0; i < numPlants; i++) {
+			cardInvalid[i].setFillColor(validColor);
+		}
+		cardInvalid[3].setFillColor(invalidColor);
+		cardInvalid[4].setFillColor(invalidColor);
+		cardInvalid[5].setFillColor(invalidColor);
+	} else if (suns >= 75) {
+		for (int i = 0; i < numPlants; i++) {
+			cardInvalid[i].setFillColor(invalidColor);
+		}
+		cardInvalid[2].setFillColor(validColor);
+		cardInvalid[6].setFillColor(validColor);
+	} else if (suns >= 50) {
+		for (int i = 0; i < numPlants; i++) {
+			cardInvalid[i].setFillColor(invalidColor);
+		}
+		cardInvalid[2].setFillColor(validColor);
+	} else {
+		for (int i = 0; i < numPlants; i++) {
+			cardInvalid[i].setFillColor(invalidColor);
+		}
+	}
 }
 
 void PlantFactory::Draw() const
@@ -93,7 +131,10 @@ void PlantFactory::Draw() const
 	int row = (mouseY - 80) / 100;
 	int col = (mouseX - 230) / 80;
 	if(InGrid() && plantSelected && !plants[row][col]) window->draw(gridSprite);
-	if (plantSelected ) {
+	for (int i = 0; i < numPlants; i++) {
+		window->draw(cardInvalid[i]);
+	}
+	if (plantSelected) {
 		window->draw(cursor.sprite);
 	}
 }
@@ -116,24 +157,31 @@ Plant* PlantFactory::NewPlant(int mouseX, int mouseY)
 	{
 	case 0:
 		plant = new SunFlower(row, col);
+		suns -= 100;
 		break;
 	case 1:
 		plant = new PeaShooter(row, col);
+		suns -= 100;
 		break;
 	case 2:
 		plant = new Wallnut(row, col);
+		suns -= 50;
 		break;
 	case 3:
 		plant = new CherryBomb(row, col);
+		suns -= 150;
 		break;
 	case 4:
 		plant = new Repeater(row, col);
+		suns -= 200;
 		break;
 	case 5:
 		plant = new SnowPea(row, col);
+		suns -= 150;
 		break;
 	case 6:
 		plant = new FumeShroom(row, col);
+		suns -= 75;
 		break;
 	default:
 		break;
@@ -147,5 +195,15 @@ void PlantFactory::UnSelectPlant()
 {
 	plantSelected = false;
 	return;
+}
+
+void PlantFactory::SetSuns(int suns)
+{
+	this->suns = suns;
+}
+
+int PlantFactory::GetSuns() const
+{
+	return suns;
 }
 

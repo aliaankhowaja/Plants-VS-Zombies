@@ -6,6 +6,7 @@ class PlantFactory
 {
 private:
 	//static const int totalPlants; // total number of plants in whole game
+	int suns;
 	sf::RenderWindow* window;
 	bool plantSelected;
 	int numPlants, selectedPlant;
@@ -17,8 +18,10 @@ private:
 	//sf::Texture cursorTexture;
 	GameObject cursor;
 	Plant* plants[6][9];
-
-
+	//sf::Texture cardInvalidTexture;
+	sf::RectangleShape cardInvalid[7];
+	sf::Color invalidColor;
+	sf::Color validColor;
 public:
 	PlantFactory(int numPlants, sf::RenderWindow* window);
 	int GetNumPlants();
@@ -30,5 +33,7 @@ public:
 	Plant* NewPlant(int mouseX, int mouseY);
 	bool InGrid() const;
 	void UnSelectPlant();
+	void SetSuns(int suns);
+	int GetSuns() const;
 };
 

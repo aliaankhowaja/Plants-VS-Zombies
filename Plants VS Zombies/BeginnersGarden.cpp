@@ -5,15 +5,15 @@ BeginnersGarden::BeginnersGarden(sf::RenderWindow* window)
 {
 	zombieRows[1] = 2;
 	zombieRows[3] = 2;
-	plantFactory = new PlantFactory(2, window);
+	plantFactory = new PlantFactory(7, window);
 	updated = 0;
-	
+	sunFactory = new SunFactory(window);
 	zombie = new SimlpleZombie();
 	this->window = window;
 	bgTexture.loadFromFile("Resources/Images/BeginnersGardenBackground.png");
 	background.setTexture(bgTexture);
 	background.setTextureRect(sf::IntRect(25, 0, 1000, 600));
-
+	
 }
 
 string BeginnersGarden::Update()
@@ -30,11 +30,14 @@ string BeginnersGarden::Update()
 	while (window->pollEvent(e)) {
 		bool mouseClick = e.mouseButton.button == sf::Mouse::Left && e.type == sf::Event::MouseButtonPressed;
 		if(mouseClick){
+			suns += sunFactory->AddSuns(mouseX , mouseY);
+			plantFactory->SetSuns(suns);
 			if (!plantFactory->IsPlantSelected()) {
 				plantFactory->SelectPlant(mouseX, mouseY);	
 			}
 			else if(plantFactory->InGrid() && !plants[row][col]) {
 				plants[row][col] = plantFactory->NewPlant(mouseX, mouseY);
+				if (plants[row][col]) suns = plantFactory->GetSuns();
 				//if (plants[row][col]->GetName() == "PeaShooter") {
 					//NewBullet(290 + col * 80, row);
 				//}
@@ -50,17 +53,11 @@ string BeginnersGarden::Update()
 	plantFactory->Update();
 	UpdatePlants();
 	UpdateBullets();
-	//if (bullet)
-	//{	
-		//bullet->Update();
-		//if (bullet->GetX() > 950) 
-		//{
-			//delete bullet;
-			//bullet = nullptr;
-		//}
-	//}
+	sunFactory->Update();
 	Shoot();
-
+	GenerateSuns();
+	sunDisplay.setString(to_string(suns));
+	UpdateLawnMovers();
 	return "";
 }
 
@@ -68,9 +65,15 @@ void BeginnersGarden::Draw() const
 {
 	window->draw(background);
 	DrawPlants();
+	DrawLawnMovers();
 	plantFactory->Draw();
-	DrawBullets();
+	window->draw(sunDisplay);
 	window->draw(zombie->GetSprite());
+	sunFactory->Draw();
+	DrawBullets();
+	/*for (int i = 0; i < 20; i++) {
+		cout << bullets[1][i]->GetExists();
+	}cout << endl;*/
 	//if (bullet) window->draw(bullet->GetSprite());
 	
 	//for (int i = 0; i < plantFactory->GetNumPlants(); i++) {

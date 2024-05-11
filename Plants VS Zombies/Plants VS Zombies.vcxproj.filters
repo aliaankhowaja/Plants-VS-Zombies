@@ -28,6 +28,9 @@
     <ClCompile Include="Wallnut.cpp" />
     <ClCompile Include="Zombie.cpp" />
     <ClCompile Include="ZombieFactory.cpp" />
+    <ClCompile Include="Sun.cpp" />
+    <ClCompile Include="SunFactory.cpp" />
+    <ClCompile Include="LawnMover.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BeginnersGarden.h" />
@@ -58,5 +61,8 @@
     <ClInclude Include="Wallnut.h" />
     <ClInclude Include="Zombie.h" />
     <ClInclude Include="ZombieFactory.h" />
+    <ClInclude Include="Sun.h" />
+    <ClInclude Include="SunFactory.h" />
+    <ClInclude Include="LawnMover.h" />
   </ItemGroup>
 </Project>
