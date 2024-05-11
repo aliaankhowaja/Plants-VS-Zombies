@@ -1,21 +1,46 @@
 #include "FootballZombie.h"
 FootballZombie::FootballZombie() {
-	name = "Football zombie";
-	health = 750;
-	dps = 85;
-	ZombieTexture.loadFromFile("Resources/Images/zombies/football_zombie.png");
-	ZombieSprite.setTexture(ZombieTexture);
-	sf::IntRect source(0, 30.5, 50, 50);
-	if (clock.getElapsedTime().asSeconds() > 1.0f) {
-		if (source.left == 600)
-			source.left = 0;
-		else
-			source.left += 50;
-		ZombieSprite.setTextureRect(source);
-		clock.restart();
-	}
+    name = "dancing zombie";
+    health = 500;
+    dps = 50;
+    ZombieTexture.loadFromFile("Resources/Images/zombiesd/football_zombie.png");
+    ZombieSprite.setTexture(ZombieTexture);
 
-	speed = 40;
-	ZombieSprite.setPosition(600, SpawnRow);
-	moving = true;
+    ZombieSprite.setTextureRect(sf::IntRect(0, 0, 70, 70));
+
+
+    speed = 0.0001;
+    ZombieSprite.setPosition(startPos, SpawnRow * 144);
+    moving = true;
+}
+void FootballZombie::Update() {
+    if (moving) {
+        ZombieTexture.loadFromFile("Resources/Images/zombiesd/football_zombie.png");
+        sf::IntRect source(0, 0, 66, 66);
+        ZombieSprite.setTexture(ZombieTexture);
+        ZombieSprite.setTextureRect(source);
+
+        static float elapsedTime = 0.0f; // Track elapsed time
+        static int frameIndex = 0; // Track current frame index
+
+        elapsedTime += clock.restart().asSeconds(); // Update elapsed time
+
+        if (elapsedTime > 0.1f) { // Check if it's time to update frame
+            ++frameIndex; // Move to the next frame
+            if (frameIndex * 66 >= 396) // Check if we reached the end of the sprite sheet
+                frameIndex = 0; // Reset frame index to start from the beginning
+            source.left = frameIndex * 66; // Update the source rectangle left position
+
+            ZombieSprite.setTextureRect(source); // Apply the updated source rectangle to the sprite
+            elapsedTime = 0.0f; // Reset elapsed time for the next frame
+        }
+
+        ZombieSprite.setPosition(this->startPos -= 0.05f * speed, row); // Update sprite position
+    }
+}
+void FootballZombie::Act() {
+
+}
+void FootballZombie::GetDps()
+{
 }

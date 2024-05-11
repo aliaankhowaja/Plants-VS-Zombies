@@ -1,14 +1,15 @@
 #include "BeginnersGarden.h"
-#include "SimlpleZombie.h"
+
+
 #include <iostream>
 BeginnersGarden::BeginnersGarden(sf::RenderWindow* window)
 {
-	zombieRows[1] = 2;
-	zombieRows[3] = 2;
+	
 	plantFactory = new PlantFactory(2, window);
 	updated = 0;
 	
-	zombie = new SimlpleZombie();
+	ZombieFac;
+
 	this->window = window;
 	bgTexture.loadFromFile("Resources/Images/BeginnersGardenBackground.png");
 	background.setTexture(bgTexture);
@@ -47,6 +48,8 @@ string BeginnersGarden::Update()
 			plantFactory->UnSelectPlant(); // unselect plant
 		}
 	}
+	
+	
 	plantFactory->Update();
 	UpdatePlants();
 	UpdateBullets();
@@ -70,7 +73,7 @@ void BeginnersGarden::Draw() const
 	DrawPlants();
 	plantFactory->Draw();
 	DrawBullets();
-	window->draw(zombie->GetSprite());
+	ZombieFac.Draw();
 	//if (bullet) window->draw(bullet->GetSprite());
 	
 	//for (int i = 0; i < plantFactory->GetNumPlants(); i++) {

@@ -3,10 +3,11 @@
 class DancingZombie :
     public Zombie
 {
-private:
+
 public:
    DancingZombie();
-   //void Update();
-   //void Act();
+   virtual void Update();
+   virtual void Act();
+   virtual void GetDps();
 };
 

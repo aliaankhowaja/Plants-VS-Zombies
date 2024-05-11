@@ -5,5 +5,8 @@ class FootballZombie :
 {
 public:
     FootballZombie();
+    virtual void Update();
+    virtual void Act();
+    virtual void GetDps();
 };
 
