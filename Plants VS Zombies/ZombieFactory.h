@@ -12,7 +12,7 @@ private:
 	sf::RenderWindow* window;
 	Zombie* zombies[6];
 public:
-	ZombieFactory();
+	ZombieFactory(sf::RenderWindow *window);
 	void Draw();
 
 

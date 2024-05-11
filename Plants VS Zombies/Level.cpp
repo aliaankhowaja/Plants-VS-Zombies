@@ -6,6 +6,7 @@ using namespace std;
 
 Level::Level()
 {
+
     font.loadFromFile("Resources/Fonts/TheZombieBirds.ttf");
     sunDisplay.setFont(font);
     sunDisplay.setCharacterSize(40);

@@ -20,9 +20,9 @@ protected:
 	Plant* plants[rows][columns];
 	PlantFactory* plantFactory;
 	int zombieRows[rows];
-	BulletContainer *bullets[6];
-	int bulletRows[6];
-	ZombieFactory ZombieFac;
+	//BulletContainer *bullets[6];
+	//int bulletRows[6];
+	ZombieFactory* ZombieFac;
 	//BulletContainer *bullets[6];
 	Bullet *bullets[rows][20];
 	int bulletRows[rows];

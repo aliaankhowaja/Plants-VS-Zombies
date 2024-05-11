@@ -4,6 +4,7 @@
 #include <iostream>
 BeginnersGarden::BeginnersGarden(sf::RenderWindow* window)
 {
+	ZombieFac = new ZombieFactory(window);
 	zombieRows[1] = 2;
 	zombieRows[3] = 2;
 	plantFactory = new PlantFactory(7, window);
@@ -82,7 +83,7 @@ void BeginnersGarden::Draw() const
 	/*for (int i = 0; i < 20; i++) {
 		cout << bullets[1][i]->GetExists();
 	}cout << endl;*/
-	ZombieFac.Draw();
+	ZombieFac->Draw();
 	//if (bullet) window->draw(bullet->GetSprite());
 	
 	//for (int i = 0; i < plantFactory->GetNumPlants(); i++) {
