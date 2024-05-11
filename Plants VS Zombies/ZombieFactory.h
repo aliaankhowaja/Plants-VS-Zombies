@@ -4,21 +4,16 @@
 #include"SimlpleZombie.h"
 #include"FootballZombie.h"
 #include"DancingZombie.h"
-#include"DolphinRiderZombie.h"
 #include"FlyingZombie.h"
+#include <ctime>
 class ZombieFactory
 {
 private:
 	sf::RenderWindow* window;
-	
-	sf::Sprite background;
-	sf::Texture bgTexture;
-	sf::Sprite cardsSprite;
-	sf::Texture cardsTexture;
-	Zombie* zombies;
+	Zombie* zombies[6];
 public:
 	ZombieFactory();
-	void Draw() const;
+	void Draw();
 
 
 };

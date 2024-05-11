@@ -1,4 +1,5 @@
 #pragma once
+#include<ctime>
 #include<iostream>
 #include<SFML/Graphics.hpp>
 using namespace std;
@@ -7,7 +8,7 @@ class Zombie
 {
 protected:
 	string name;
-	int speed;
+	double speed;
 	int health;
 	int dps;
 	sf::Sprite ZombieSprite;
@@ -15,10 +16,12 @@ protected:
 	sf::Clock clock;
 	int SpawnRow;
 	bool moving;
+	int startPos;
+	int row;
 
 public:
-	Zombie();
 	
+	Zombie();
 	sf::Sprite& GetSprite();
 	virtual void Update() = 0;
 	virtual void GetDps() = 0;

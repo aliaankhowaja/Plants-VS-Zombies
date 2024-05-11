@@ -5,5 +5,8 @@ class FlyingZombie :
 {
 public:
     FlyingZombie();
+    virtual void Update();
+    virtual void Act();
+    virtual void GetDps();
 };
 
