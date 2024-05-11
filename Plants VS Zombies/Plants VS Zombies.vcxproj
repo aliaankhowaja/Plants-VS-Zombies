@@ -151,6 +151,7 @@
     <ClCompile Include="Graphics.cpp" />
     <ClCompile Include="HelpScreen.cpp" />
     <ClCompile Include="LawnMover.cpp" />
+    <ClCompile Include="LeaderBoard.cpp" />
     <ClCompile Include="Level.cpp" />
     <ClCompile Include="LoadingScreen.cpp" />
     <ClCompile Include="main.cpp" />
@@ -159,6 +160,7 @@
     <ClCompile Include="PeaShooter.cpp" />
     <ClCompile Include="Plant.cpp" />
     <ClCompile Include="PlantFactory.cpp" />
+    <ClCompile Include="Players.cpp" />
     <ClCompile Include="QuitScreen.cpp" />
     <ClCompile Include="Repeater.cpp" />
     <ClCompile Include="Screen.cpp" />
@@ -185,6 +187,7 @@
     <ClInclude Include="Graphics.h" />
     <ClInclude Include="HelpScreen.h" />
     <ClInclude Include="LawnMover.h" />
+    <ClInclude Include="LeaderBoard.h" />
     <ClInclude Include="Level.h" />
     <ClInclude Include="LoadingScreen.h" />
     <ClInclude Include="MainMenuScreen.h" />
@@ -192,6 +195,7 @@
     <ClInclude Include="PeaShooter.h" />
     <ClInclude Include="Plant.h" />
     <ClInclude Include="PlantFactory.h" />
+    <ClInclude Include="Players.h" />
     <ClInclude Include="QuitScreen.h" />
     <ClInclude Include="Repeater.h" />
     <ClInclude Include="resource.h" />

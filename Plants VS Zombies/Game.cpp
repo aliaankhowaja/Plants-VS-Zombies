@@ -93,7 +93,7 @@ void Game::ShowMainMenu()
 }
 
 void Game::ShowGameScreen() {
-	Screen* level1 = new QuitScreen(window);
+	Screen* level1 = new PausedGame(window);
 	//PopScreen();
 	PushScreen(level1);
 }

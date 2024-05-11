@@ -33,6 +33,8 @@
     <ClCompile Include="QuitScreen.cpp" />
     <ClCompile Include="AddPlayerBlock.cpp" />
     <ClCompile Include="PausedGame.cpp" />
+    <ClCompile Include="Players.cpp" />
+    <ClCompile Include="LeaderBoard.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BeginnersGarden.h" />
@@ -68,5 +70,7 @@
     <ClInclude Include="QuitScreen.h" />
     <ClInclude Include="AddPlayerBlock.h" />
     <ClInclude Include="PausedGame.h" />
+    <ClInclude Include="Players.h" />
+    <ClInclude Include="LeaderBoard.h" />
   </ItemGroup>
 </Project>
