@@ -1,12 +1,12 @@
 #pragma once
 #include "Zombie.h"
-class SimlpleZombie :
+class SimpleZombie :
     public Zombie
 {
 public:
-    SimlpleZombie();
+    SimpleZombie(int row);
     virtual void Update();
-    virtual void GetDps();
+    //virtual void GetDps();
     virtual void Act();
 };
 

@@ -4,17 +4,17 @@
 #include <iostream>
 BeginnersGarden::BeginnersGarden(sf::RenderWindow* window)
 {
-	ZombieFac = new ZombieFactory(window);
-	zombieRows[1] = 2;
-	zombieRows[3] = 2;
-	plantFactory = new PlantFactory(7, window);
+	zombieFactory = new ZombieFactory();
+	//zombieRows[1] = ;
+	//zombieRows[3] = 2;
+	//plantFactory = new PlantFactory(7, window);
 	
 	plantFactory = new PlantFactory(2, window);
 	updated = 0;
 	sunFactory = new SunFactory(window);
-	zombie = new SimlpleZombie();
+	//zombie = new SimpleZombie();
 	
-	ZombieFac;
+	//zombieFactory;
 
 	this->window = window;
 	bgTexture.loadFromFile("Resources/Images/BeginnersGardenBackground.png");
@@ -67,6 +67,7 @@ string BeginnersGarden::Update()
 	GenerateSuns();
 	sunDisplay.setString(to_string(suns));
 	UpdateLawnMovers();
+	//zombieFactory->Update();
 	return "";
 }
 
@@ -77,13 +78,13 @@ void BeginnersGarden::Draw() const
 	DrawLawnMovers();
 	plantFactory->Draw();
 	window->draw(sunDisplay);
-	window->draw(zombie->GetSprite());
+	//window->draw(zombie->GetSprite());
 	sunFactory->Draw();
 	DrawBullets();
 	/*for (int i = 0; i < 20; i++) {
 		cout << bullets[1][i]->GetExists();
 	}cout << endl;*/
-	ZombieFac->Draw();
+	//zombieFactory->Draw();
 	//if (bullet) window->draw(bullet->GetSprite());
 	
 	//for (int i = 0; i < plantFactory->GetNumPlants(); i++) {

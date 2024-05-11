@@ -1,27 +1,24 @@
-#include "SimlpleZombie.h"
-SimlpleZombie::SimlpleZombie() {
-	name = "simple zombie";
+#include "SimpleZombie.h"
+SimpleZombie::SimpleZombie(int row) {
+	name = "SimpleZombie";
 	health = 500;
-	dps = 50;
-	ZombieTexture.loadFromFile("Resources/Images/zombiesd/normalZombie.png");
-	ZombieSprite.setTexture(ZombieTexture);
-	
-	ZombieSprite.setTextureRect(sf::IntRect(0, 0, 144, 144));
-
-	
+    this->row = row;
+	//dps = 50;
+	texture.loadFromFile("Resources/Images/zombiesd/normalZombie.png");
+	sprite.setTexture(texture);
+	sprite.setTextureRect(sf::IntRect(0, 0, 144, 144));
 	speed = 0.0001;
-	ZombieSprite.setPosition(startPos,SpawnRow*144  );
+	sprite.setPosition(x, row * 144);
 	moving = true;
-
 }
 
-void SimlpleZombie::Update()//animations
+void SimpleZombie::Update()//animations
 {
     if (moving) {
-        ZombieTexture.loadFromFile("Resources/Images/zombiesd/normalZombie.png");
+        texture.loadFromFile("Resources/Images/zombiesd/normalZombie.png");
         sf::IntRect source(0, 0, 66, 144);
-        ZombieSprite.setTexture(ZombieTexture);
-        ZombieSprite.setTextureRect(source);
+        sprite.setTexture(texture);
+        sprite.setTextureRect(source);
 
         static float elapsedTime = 0.0f; // Track elapsed time
         static int frameIndex = 0; // Track current frame index
@@ -34,11 +31,11 @@ void SimlpleZombie::Update()//animations
                 frameIndex = 0; // Reset frame index to start from the beginning
             source.left = frameIndex * 66; // Update the source rectangle left position
 
-            ZombieSprite.setTextureRect(source); // Apply the updated source rectangle to the sprite
+            sprite.setTextureRect(source); // Apply the updated source rectangle to the sprite
             elapsedTime = 0.0f; // Reset elapsed time for the next frame
         }
 
-        ZombieSprite.setPosition(this->startPos -= 0.05f * speed, row); // Update sprite position
+        sprite.setPosition(this->x -= 0.05f * speed, row); // Update sprite position
     }
 
 
@@ -47,10 +44,10 @@ void SimlpleZombie::Update()//animations
 	
 }
 
-void SimlpleZombie::GetDps()
-{
-}
+//void SimpleZombie::GetDps()
+//{
+//}
 
-void SimlpleZombie::Act()
+void SimpleZombie::Act()
 {
 }

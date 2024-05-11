@@ -5,9 +5,9 @@ class DancingZombie :
 {
 
 public:
-   DancingZombie();
+   DancingZombie(int row);
    virtual void Update();
    virtual void Act();
-   virtual void GetDps();
+   //virtual void GetDps();
 };
 

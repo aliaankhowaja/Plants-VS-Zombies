@@ -1,24 +1,24 @@
 #include "FlyingZombie.h"
-FlyingZombie::FlyingZombie() {
+FlyingZombie::FlyingZombie(int row) {
     name = "dancing zombie";
     health = 500;
-    dps = 50;
-    ZombieTexture.loadFromFile("Resources/Images/zombiesd/flying_zombie.png");
-    ZombieSprite.setTexture(ZombieTexture);
+    this->row = row;
+    texture.loadFromFile("Resources/Images/zombiesd/flying_zombie.png");
+    sprite.setTexture(texture);
 
-    ZombieSprite.setTextureRect(sf::IntRect(0, 0, 144, 144));
+    sprite.setTextureRect(sf::IntRect(0, 0, 144, 144));
 
 
     speed = 0.0001;
-    ZombieSprite.setPosition(startPos, SpawnRow * 144);
+    sprite.setPosition(x, row * 144);
     moving = true;
 }
 void FlyingZombie::Update() {
     if (moving) {
-        ZombieTexture.loadFromFile("Resources/Images/zombiesd/flying_zombie.png");
+        texture.loadFromFile("Resources/Images/zombiesd/flying_zombie.png");
         sf::IntRect source(0, 0, 66, 144);
-        ZombieSprite.setTexture(ZombieTexture);
-        ZombieSprite.setTextureRect(source);
+        sprite.setTexture(texture);
+        sprite.setTextureRect(source);
 
         static float elapsedTime = 0.0f; // Track elapsed time
         static int frameIndex = 0; // Track current frame index
@@ -31,16 +31,16 @@ void FlyingZombie::Update() {
                 frameIndex = 0; // Reset frame index to start from the beginning
             source.left = frameIndex * 66; // Update the source rectangle left position
 
-            ZombieSprite.setTextureRect(source); // Apply the updated source rectangle to the sprite
+            sprite.setTextureRect(source); // Apply the updated source rectangle to the sprite
             elapsedTime = 0.0f; // Reset elapsed time for the next frame
         }
 
-        ZombieSprite.setPosition(this->startPos -= 0.05f * speed, row); // Update sprite position
+        sprite.setPosition(this->x -= 0.05f * speed, row); // Update sprite position
     }
 }
 void FlyingZombie::Act() {
 
 }
-void FlyingZombie::GetDps()
-{
-}
+//void FlyingZombie::GetDps()
+//{
+//}
