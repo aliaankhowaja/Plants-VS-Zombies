@@ -156,6 +156,7 @@
     <ClCompile Include="LoadingScreen.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MainMenuScreen.cpp" />
+    <ClCompile Include="NewPlayerInput.cpp" />
     <ClCompile Include="PausedGame.cpp" />
     <ClCompile Include="PeaShooter.cpp" />
     <ClCompile Include="Plant.cpp" />
@@ -191,6 +192,7 @@
     <ClInclude Include="Level.h" />
     <ClInclude Include="LoadingScreen.h" />
     <ClInclude Include="MainMenuScreen.h" />
+    <ClInclude Include="NewPlayerInput.h" />
     <ClInclude Include="PausedGame.h" />
     <ClInclude Include="PeaShooter.h" />
     <ClInclude Include="Plant.h" />

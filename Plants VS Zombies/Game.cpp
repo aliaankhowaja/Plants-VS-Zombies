@@ -5,6 +5,7 @@
 #include"QuitScreen.h"
 #include "BeginnersGarden.h"
 #include"AddPlayerBlock.h"
+#include "NewPlayerInput.h"
 #include "PausedGame.h"
 #include <iostream>
 
@@ -93,7 +94,7 @@ void Game::ShowMainMenu()
 }
 
 void Game::ShowGameScreen() {
-	Screen* level1 = new PausedGame(window);
+	Screen* level1 = new BeginnersGarden(window);
 	//PopScreen();
 	PushScreen(level1);
 }

@@ -57,8 +57,14 @@ string BeginnersGarden::Update()
 			plantFactory->UnSelectPlant(); // unselect plant
 		}
 	}
+	int once = 0;
+	if (once == 0) {
+		GenerateZombies();
+		once++;
+	}
 	
 	
+	UpdateZombies();
 	plantFactory->Update();
 	UpdatePlants();
 	UpdateBullets();
@@ -67,6 +73,7 @@ string BeginnersGarden::Update()
 	GenerateSuns();
 	sunDisplay.setString(to_string(suns));
 	UpdateLawnMovers();
+	
 	//zombieFactory->Update();
 	return "";
 }
@@ -76,11 +83,14 @@ void BeginnersGarden::Draw() const
 	window->draw(background);
 	DrawPlants();
 	DrawLawnMovers();
+	
 	plantFactory->Draw();
 	window->draw(sunDisplay);
 	//window->draw(zombie->GetSprite());
 	sunFactory->Draw();
 	DrawBullets();
+	
+	DrawZombies();
 	/*for (int i = 0; i < 20; i++) {
 		cout << bullets[1][i]->GetExists();
 	}cout << endl;*/

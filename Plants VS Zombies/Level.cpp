@@ -15,6 +15,10 @@ Level::Level()
     sunDisplay.setFillColor(sf::Color::Black);
     clock.restart();
     suns = 0;
+    lvlProgress = 0;
+    generatedZombies = 0;
+    //////////MAX ZOMBIES/////////
+    maxZombies = 10;
    //grid = new Grid(window);
     //plantFactory = new PlantFactory(2, )
     for (int i = 0; i < rows; i++) {
@@ -105,16 +109,69 @@ void Level::GenerateSuns()
 void Level::GenerateZombies()
 {
     //TODO: Generate new zombies. Check Generate suns for reference
+
+    //this code is very problematic
+
+  //TODO UPDATED: DO SOMETHING SUCH THAT A ZOMBIE CAN BE SEEN PLACED ON THE MAP (AGAR GALDI HO GAYE TO LINK ALL FILES) LIKE SPRITES CLICK KRNE PAR YOU GET SOME SCREEN
+     
+
+    /*int type=1;
+    int time_1=0;*/
+
+    //thought that maybe it doesnt work cuz zaida baar chalne k masla hai but this doesnt show the zombie spawning
+    //dereferencing doesnt work either
+   /* if (time_1 == 0) {
+        zombies[5][8] = zombieFactory->NewZombie(type);
+        time_1 = 1;
+    }*/
+
+    
+    
+
+    //ALI THIS CODE MAKES THE PROGRAM UNRESPONSIVE LIKE WHITE SCREEN AAJATI THA
+   // zombies[0][0] = zombieFactory->NewZombie(type);
+   // 
+   // 
+    //the progressive difficulty increase is working code
+    // 
+    // 
+    //while (generatedZombies < maxZombies) {
+    //    if (clock.getElapsedTime().asSeconds() == 10 - lvlProgress) {//faster the progress faster the zombie spawning
+    //        type = rand() % 5;//random zombie type generated
+    //        zombies[0][0]= zombieFactory->NewZombie(type);///type passed as argument to generate specific zombie
+    //        generatedZombies++;//increment generated zombies
+    //        lvlProgress += 2;//difficulty increases
+    //        // i++;
+    //        clock.restart();//again start generation time
+    //    }
+    //}
 }
 
 void Level::DrawZombies() const
 {
     //TODO: Draw the zombies in game window. Check GenerateBullets() for reference
+    //this logic works i believe
+    for (int i = 0; i < 6; i++) {
+        for (int j = 0; j < 10; j++) {
+            if (!zombies[i][j])continue;
+            else
+                window->draw(zombies[i][j]->GetSprite());
+        }
+    }
 }
 
 void Level::UpdateZombies()
 {
+    
     //TODO: Draw the zombies in game window. Check UpdateBullets() for reference
+    //this logic works i believe
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < columns; j++) {
+            if (!zombies[i][j]) continue;
+            zombies[i][j]->Update();
+        }
+    }
+   
 }
 
 void Level::NewBullet(int column, int row)

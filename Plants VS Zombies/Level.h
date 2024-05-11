@@ -29,6 +29,16 @@ protected:
 	SunFactory* sunFactory;
 	LawnMover* lawnMovers[rows];
 	sf::Clock clock;
+	int maxZombies;
+	int generatedZombies;
+	int lvlProgress;
+	//delete from here
+	Zombie* zmb;
+
+	///number of zombies in lvl====int
+	//num zombies genereated ====int 
+	//progressss =====int
+
 	//Grid* grid;
 public:
 	Level();
