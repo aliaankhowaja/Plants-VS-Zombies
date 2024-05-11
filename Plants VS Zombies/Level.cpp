@@ -102,6 +102,21 @@ void Level::GenerateSuns()
     }
 }
 
+void Level::GenerateZombies()
+{
+    //TODO: Generate new zombies. Check Generate suns for reference
+}
+
+void Level::DrawZombies() const
+{
+    //TODO: Draw the zombies in game window. Check GenerateBullets() for reference
+}
+
+void Level::UpdateZombies()
+{
+    //TODO: Draw the zombies in game window. Check UpdateBullets() for reference
+}
+
 void Level::NewBullet(int column, int row)
 {
     for (int i = 0; i < 20; i++) {

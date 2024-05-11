@@ -4,9 +4,9 @@ class FlyingZombie :
     public Zombie
 {
 public:
-    FlyingZombie();
+    FlyingZombie(int row);
     virtual void Update();
     virtual void Act();
-    virtual void GetDps();
+    //virtual void GetDps();
 };
 

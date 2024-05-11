@@ -5,13 +5,14 @@
 #include "SFML/Window/Mouse.hpp"
 #include "structures.h"
 #include "Bullet.h"
-#include"ZombieFactory.h"
+#include "ZombieFactory.h"
 #include "Zombie.h"
 #include "SunFactory.h"
 #include "LawnMover.h"
 class Level :public Screen
 {
 protected:
+	int progress;
 	static const int rows = 6, columns = 9;
 	sf::Text sunDisplay;
 	sf::Font font;
@@ -20,14 +21,11 @@ protected:
 	Plant* plants[rows][columns];
 	PlantFactory* plantFactory;
 	int zombieRows[rows];
-	//BulletContainer *bullets[6];
-	//int bulletRows[6];
-	ZombieFactory* ZombieFac;
-	//BulletContainer *bullets[6];
+	ZombieFactory* zombieFactory;
 	Bullet *bullets[rows][20];
 	int bulletRows[rows];
 	int suns;
-	Zombie* zombie;
+	Zombie* zombies[6][10];
 	SunFactory* sunFactory;
 	LawnMover* lawnMovers[rows];
 	sf::Clock clock;
@@ -47,5 +45,8 @@ public:
 	void UpdateLawnMovers();
 	void Shoot();
 	void GenerateSuns();
+	void GenerateZombies();
+	void DrawZombies() const;
+	void UpdateZombies();
 };
 

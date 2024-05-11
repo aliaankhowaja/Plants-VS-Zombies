@@ -4,9 +4,9 @@ class FootballZombie :
     public Zombie
 {
 public:
-    FootballZombie();
+    FootballZombie(int row);
     virtual void Update();
     virtual void Act();
-    virtual void GetDps();
+    //virtual void GetDps();
 };
 
