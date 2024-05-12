@@ -4,8 +4,10 @@ using namespace std;
 int Bullet::bulletID = 0;
 Bullet::Bullet()
 {
+	damage = 50;
 	clock.restart();
 	texture.loadFromFile("Resources/Images/pea.png");
+	splats.loadFromFile("Resources/Images/peaSplats.png");
 	sprite.setTexture(texture);
 	sprite.setPosition(0, 0);
 	row = 0;
@@ -56,8 +58,18 @@ void Bullet::Revive()
 	exists = true;
 	destroyed = false;
 	destroyedAnimation = 0;
-	texture.loadFromFile("Resources/Images/pea.png");
+	//texture.loadFromFile("Resources/Images/pea.png");
+	sprite.setTexture(texture);
 	sprite.setTextureRect(sf::IntRect(0,0,28,28));
+}
+
+void Bullet::Hit()
+{
+	sprite.setTexture(splats);
+	//texture.loadFromFile("Resources/Images/peaSplats.png");
+	sprite.setTextureRect(sf::IntRect(destroyedAnimation * 24, 0, 24, 24));
+	destroyedAnimation++;
+	destroyed = true;
 }
 
 void Bullet::SetPosition(int column, int row)
@@ -79,6 +91,16 @@ void Bullet::SetID()
 	Bullet::bulletID = 0;
 }
 
+int Bullet::GetDamage() const
+{
+	return damage;
+}
+
+bool Bullet::GetDestroyed() const
+{
+	return destroyed;
+}
+
 bool Bullet::Update()
 {
 	
@@ -86,10 +108,11 @@ bool Bullet::Update()
 	if (((int)clock.getElapsedTime().asMilliseconds() / 2) && !destroyed)
 	{
 		if (x > 1000) {
-			texture.loadFromFile("Resources/Images/peaSplats.png");
-			sprite.setTextureRect(sf::IntRect(destroyedAnimation * 24, 0, 24, 24));
-			destroyedAnimation++;
-			destroyed = true;
+			exists = false;
+			//texture.loadFromFile("Resources/Images/peaSplats.png");
+			//sprite.setTextureRect(sf::IntRect(destroyedAnimation * 24, 0, 24, 24));
+			//destroyedAnimation++;
+			//destroyed = true;
 			return exists;
 		}
 		x++;

@@ -1,13 +1,13 @@
 #include "SimpleZombie.h"
 SimpleZombie::SimpleZombie(int row) {
 	name = "SimpleZombie";
-	health = 600;
+	health = 150;
     this->row = row;
 	//dps = 50;
 	texture.loadFromFile("Resources/Images/zombiesd/normalZombie.png");
 	sprite.setTexture(texture);
 	sprite.setTextureRect(sf::IntRect(0, 0, 144, 144));
-    speed = 5;
+    speed = 10;
 	sprite.setPosition(x, 15+row * 100);
 	moving = 1;
 }

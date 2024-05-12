@@ -3,7 +3,7 @@
 Zombie::Zombie() {
 	//srand(time(0));
 	//row = rand() % 6;
-	x = 900;
+	x = 920;
 	animation = 0;
 	//row = row * 30.5;
 }
@@ -17,8 +17,16 @@ int Zombie::GetRow()
 	return row;
 }
 
-void Zombie::GetDamage(int x)
+int Zombie::GetX()
 {
-	this->health -= x;
+	return x;
+}
 
+void Zombie::GetDamage(int d)
+{
+	health -= d;
+}
+
+int Zombie::GetHealth() const {
+	return health;
 }

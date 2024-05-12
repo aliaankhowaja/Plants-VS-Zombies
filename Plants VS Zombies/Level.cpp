@@ -4,8 +4,19 @@ using namespace std;
 
 
 
-Level::Level() : maxSpawnInterval(2), minSpawnInterval(1)
+Level::Level() : maxSpawnInterval(10), minSpawnInterval(5)
 {
+    progressBarFillTexture.loadFromFile("Resources/Images/ProgressBarFilled.png");
+    progressBarFill.setTexture(progressBarFillTexture);
+    progressBarFill.setScale(1.2, 1.2);
+    progressBarFill.setPosition(700, 10);
+
+    progressBarTexture.loadFromFile("Resources/Images/ProgressBar.png");
+    progressBar.setTexture(progressBarTexture);
+    progressBar.setScale(1.2, 1.2);
+    progressBar.setPosition(700, 9);
+
+
     something = true;
     font.loadFromFile("Resources/Fonts/TheZombieBirds.ttf");
     sunDisplay.setFont(font);
@@ -15,7 +26,7 @@ Level::Level() : maxSpawnInterval(2), minSpawnInterval(1)
     sunDisplay.setFillColor(sf::Color::Black);
     sunClock.restart();
     zombieClock.restart();
-    suns = 0;
+    suns = 100;
     lvlProgress = 0;
     something = true;
     generatedZombies = 0;
@@ -119,7 +130,6 @@ void Level::GenerateZombies()
         //zombies.push_back(Zombie(/* pass necessary parameters */));
         generatedZombies++; // Increment the zombie count
         // Increase progress when each zombie is created
-        progress += 100/maxZombies;
         if (progress > 100.0f) {
             progress = 100.0f; // Ensure progress doesn't exceed 100
         }
@@ -131,51 +141,10 @@ void Level::GenerateZombies()
         for (int i = 0; i < 20; i++) {
             if (zombies[row][i]) continue;
             zombies[row][i] = zombie;
+            zombieRows[row]++;
             break;
         }
     }
-
-
-    /*if (something) {
-        something = false;
-    }*/
-    //TODO: Generate new zombies. Check Generate suns for reference
-
-    //this code is very problematic
-
-  //TODO UPDATED: DO SOMETHING SUCH THAT A ZOMBIE CAN BE SEEN PLACED ON THE MAP (AGAR GALDI HO GAYE TO LINK ALL FILES) LIKE SPRITES CLICK KRNE PAR YOU GET SOME SCREEN
-     
-
-    /*int type=1;
-    int time_1=0;*/
-
-    //thought that maybe it doesnt work cuz zaida baar chalne k masla hai but this doesnt show the zombie spawning
-    //dereferencing doesnt work either
-   /* if (time_1 == 0) {
-        zombies[5][8] = zombieFactory->NewZombie(type);
-        time_1 = 1;
-    }*/
-
-    
-    
-
-    //ALI THIS CODE MAKES THE PROGRAM UNRESPONSIVE LIKE WHITE SCREEN AAJATI THA
-   // zombies[0][0] = zombieFactory->NewZombie(type);
-   // 
-   // 
-    //the progressive difficulty increase is working code
-    // 
-    // 
-    //while (generatedZombies < maxZombies) {
-    //    if (clock.getElapsedTime().asSeconds() == 10 - lvlProgress) {//faster the progress faster the zombie spawning
-    //        type = rand() % 5;//random zombie type generated
-    //        zombies[0][0]= zombieFactory->NewZombie(type);///type passed as argument to generate specific zombie
-    //        generatedZombies++;//increment generated zombies
-    //        lvlProgress += 2;//difficulty increases
-    //        // i++;
-    //        clock.restart();//again start generation time
-    //    }
-    //}
 }
 
 void Level::DrawZombies() const
@@ -228,6 +197,7 @@ void Level::DrawBullets() const{
         for (int j = 0; j < 20; j++) {
             if (!(bullets[i][j]->GetExists())) continue;
             window->draw(bullets[i][j]->GetSprite());
+            
             //bullets[i][j].SetExists(true);
             //bullets[i] [j].SetPosition(column, row);
         }
@@ -243,10 +213,30 @@ void Level::DrawBullets() const{
     //}
 }
 void Level::UpdateBullets() {
+    Bullet* bullet;
+    Zombie* zombie;
     for (int i = 0; i < 5; i++) {
         for (int j = 0; j < 20; j++) {
-            if (!(bullets[i][j]->GetExists())) continue;
-            bullets[i][j]->Update();
+            bullet = bullets[i][j];
+            if (!(bullet->GetExists())) continue;
+            bullet->Update();
+            for (int k = 0; k < 10; k++) {
+                zombie = zombies[i][k];
+                if (!zombie) continue;
+                if (!(bullet->GetDestroyed()) && (bullet->GetX() - 80) > zombie->GetX())
+                {
+                    bullet->Hit();
+                    
+                    zombie->GetDamage(bullet->GetDamage());
+                    if (zombie->GetHealth() <= 0) {
+                        delete zombie;
+                        zombies[i][k] = nullptr;
+                        zombieRows[i]--;
+                        progress += 100 / maxZombies;
+                    }
+                    break;
+                }
+            }
             //bullets[i][j].SetExists(true);
             //bullets[i] [j].SetPosition(column, row);
         }

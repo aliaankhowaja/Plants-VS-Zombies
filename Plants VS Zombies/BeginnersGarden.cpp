@@ -4,7 +4,7 @@
 #include <iostream>
 BeginnersGarden::BeginnersGarden(sf::RenderWindow* window)
 {
-	maxZombies = 15;
+	maxZombies = 10;
 	//lvlProgress = 0;
 	zombieFactory = new ZombieFactory();
 	//zombieRows[1] = ;
@@ -27,6 +27,8 @@ BeginnersGarden::BeginnersGarden(sf::RenderWindow* window)
 
 string BeginnersGarden::Update()
 {
+	//cout << progress << endl;
+	progressBar.setTextureRect(sf::IntRect(0, 0, 160 - 150 * (float)progress / 100, 25));
 	int mouseX = sf::Mouse::getPosition(*window).x;
 	int mouseY = sf::Mouse::getPosition(*window).y;
 	int row = (mouseY - 80) / 100;
@@ -88,11 +90,14 @@ void BeginnersGarden::Draw() const
 	
 	plantFactory->Draw();
 	window->draw(sunDisplay);
+	window->draw(progressBarFill);
+	window->draw(progressBar);
+
 	//window->draw(zombie->GetSprite());
 	sunFactory->Draw();
+	DrawZombies();
 	DrawBullets();
 	//window->draw(f1->GetSprite());
-	DrawZombies();
 	/*for (int i = 0; i < 20; i++) {
 		cout << bullets[1][i]->GetExists();
 	}cout << endl;*/
