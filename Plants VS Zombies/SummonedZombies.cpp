@@ -11,6 +11,8 @@ SummonedZombies::SummonedZombies(int x, int y)
 	speed = 0.0001;
 	sprite.setPosition(x, row);
 	moving = 1;
+    ready = 0;
+    sprite.setColor(sf::Color(255, 255, 255, 180));
 }
 
 string SummonedZombies::Update()
@@ -70,5 +72,14 @@ void SummonedZombies::Act()
 {
 
 }
+
+//SummonedZombies* SummonedZombies::GetZombie(bool ready,int x,int y)
+//{
+//    SummonedZombies* ptr;
+//    if (ready) {
+//        ptr = new SummonedZombies(x + 15, y);
+//    }
+//    return ptr;
+//}
 
 

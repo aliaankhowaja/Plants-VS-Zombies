@@ -7,7 +7,8 @@ class DancingZombie :
 private:
     sf::Clock movementC;
     sf::Clock SummonClock;
-    SummonedZombies* ptr;
+   // SummonedZombies* Summoned;
+   
 public:
    DancingZombie(int row);
    virtual string Update();

@@ -199,6 +199,10 @@ void Level::GenerateZombies()
         else {
             zombie = zombieFactory->NewZombie(type);
         }
+        zombieClock.restart();
+        // Print debug message (optional)
+        //std::cout << "Zombie generated! Total zombies: " << generatedZombies << ", Progress: " << progress << std::endl;
+        Zombie* zombie = zombieFactory->NewZombie(1);
         int row = zombie->GetRow();
         for (int i = 0; i < 20; i++) {
             if (zombies[row][i]) continue;
@@ -253,22 +257,39 @@ void Level::UpdateZombies()
     }
    
 }
-void Level::Draw() const
+void Level::SummonZombies()
 {
-    window->draw(background);
-    DrawPlants();
-    DrawLawnMovers();
-    plantFactory->Draw();
-    window->draw(sunBank);
-    window->draw(sunDisplay);
-    if (progress >= 100)
-        window->draw(rewardSprite);
-    window->draw(progressBarFill);
-    window->draw(progressBar);
-    window->draw(brains);
-    sunFactory->Draw();
-    DrawZombies();
-    DrawBullets();
+    //Zombie* zombie = nullptr;
+    //static bool once = 0;
+
+    //for (int i = 0; i < 5; i++) {
+    //    for (int j = 0; j < 10; j++) {
+    //        if (zombies[i][j] != nullptr && zombies[i][j]->getReady()) {
+    //            zombies[i][j]->setReady(false);
+    //            once = 1;
+    //            break;
+    //            
+    //            
+    //        }
+    //    }
+    //}
+    //if (once) {
+    //    once = 0;
+
+    //    //if (zombie)continue;
+    //    zombie = zombieFactory->NewZombie(5);
+    //    int row = zombie->GetRow();
+    //    for (int k = 0; k < 20; k++) {
+    //        if (zombies[row][k] != nullptr) continue;
+    //        zombies[row][k] = zombie;
+    //        zombieRows[row]++;
+    //        once = 1;
+    //        break;
+    //    }
+    //   
+
+    //}
+    
 }
 void Level::killZombies() {
     for (int i = 0; i < 5; i++) {

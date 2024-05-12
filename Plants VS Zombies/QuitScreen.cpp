@@ -42,5 +42,14 @@ void QuitScreen::Draw() const
 
 string QuitScreen::Update()
 {
+	sf::Event e;
+	while (window->pollEvent(e)) {
+		if (e.type == sf::Event::MouseButtonPressed) {
+
+
+		}
+	}
+
+	
 	return "";
 }

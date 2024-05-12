@@ -21,7 +21,14 @@ int Zombie::GetRow()
 //{
 //	return x;
 //}
-
+bool Zombie::getReady()
+{
+	return ready;
+}
+void Zombie::setReady(bool b)
+{
+	ready = b;
+}
 void Zombie::GetDamage(int d)
 {
 	health -= d;

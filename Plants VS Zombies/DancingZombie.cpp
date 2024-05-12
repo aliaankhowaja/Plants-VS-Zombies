@@ -22,6 +22,9 @@ void DancingZombie::summon()
 {
 }
 
+
+
+
 string DancingZombie::Update() {
     if (!((int)clock.getElapsedTime().asMilliseconds() % 50) && moving) {
         sprite.setTextureRect(sf::IntRect(55 * animation, 75, 54, 80));
