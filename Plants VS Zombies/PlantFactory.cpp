@@ -40,8 +40,11 @@ bool PlantFactory::IsPlantSelected()
 
 void PlantFactory::SelectPlant(int x, int y)
 {
+	//TODO: don't select plants if less suns
 	int plant = y / 70;
-	if (x < 110 && x>0 && plant < numPlants) // checks for the seed packet bounds
+	sf::Color color = cardInvalid[plant].getFillColor();
+
+	if (x < 110 && x>0 && plant < numPlants && color == validColor) // checks for the seed packet bounds
 	{
 		selectedPlant = plant;
 		switch (selectedPlant) {

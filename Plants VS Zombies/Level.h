@@ -32,6 +32,7 @@ protected:
 	int maxZombies;
 	int generatedZombies;
 	int lvlProgress;
+	bool something;
 	//delete from here
 	Zombie* zmb;
 
