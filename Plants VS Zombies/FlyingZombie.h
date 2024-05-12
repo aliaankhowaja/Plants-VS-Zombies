@@ -5,7 +5,7 @@ class FlyingZombie :
 {
 public:
     FlyingZombie(int row);
-    virtual void Update();
+    virtual string Update();
     virtual void Act();
     
     //virtual void GetDps();

@@ -5,7 +5,7 @@ class SimpleZombie :
 {
 public:
     SimpleZombie(int row);
-    virtual void Update();
+    virtual string Update();
     //virtual void GetDps();
     virtual void Act();
     void GetDamage(int x);

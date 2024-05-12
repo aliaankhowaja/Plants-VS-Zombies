@@ -22,3 +22,8 @@ void Zombie::GetDamage(int x)
 	this->health -= x;
 
 }
+
+int Zombie::getX() const
+{
+	return x;
+}

@@ -5,7 +5,7 @@ class SummonedZombies :
 {
 public:
     SummonedZombies(int x, int y);
-    void Update();
+    string Update();
     void Act();
 };
 

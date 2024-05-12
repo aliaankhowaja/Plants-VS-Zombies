@@ -56,7 +56,7 @@ void DancingZombie::summon()
     //}
 }
 
-void DancingZombie::Update() {
+string DancingZombie::Update() {
     // Load texture only once (assuming it's constant)
     static sf::Texture texture; // Declare texture as static
     static bool textureLoaded = false; // Flag to track loading
@@ -102,6 +102,11 @@ void DancingZombie::Update() {
         }
     }
     Act();
+    if (x > 180) {
+        return "";
+    }
+    else
+        return "reached";
 
 }
 

@@ -198,11 +198,32 @@ void Level::UpdateZombies()
     for (int i = 0; i < rows; i++) {
         for (int j = 0; j < columns; j++) {
             if (!zombies[i][j]) continue;
-            zombies[i][j]->Update();
+           cout<< zombies[i][j]->Update();
+           if (!zombies[i][j]->Update().empty()) {
+               lawnMovers[i]->Use();
+              
+           }
+              
+
         }
+        
     }
    
 }
+void Level::killZombies() {
+    for (int i = 0; i < 5; i++) {
+        for (int j = 0; j < 9; j++) {
+            if (lawnMovers[i]->GetUsed() && zombies[i][j] != nullptr) {
+                if ((lawnMovers[i]->getX() - 80) >= (zombies[i][j]->getX())) {
+                    delete zombies[i][j];
+                    zombies[i][j] = NULL;
+                }
+            }
+        }
+    }
+}
+
+
 
 void Level::NewBullet(int column, int row)
 {

@@ -47,7 +47,7 @@ void FootballZombie::Act() {
 
 
 
-void FootballZombie::Update() {
+string FootballZombie::Update() {
     if (moving) {
         texture.loadFromFile("Resources/Images/zombiesd/football_zombie.png");
         sf::IntRect source(0, 70.5, 64, 70.5);
@@ -75,6 +75,11 @@ void FootballZombie::Update() {
         }
     }
     Act();
+    if (x > 180) {
+        return "";
+    }
+    else
+        return "reached";
 }
 
 

@@ -13,7 +13,7 @@ SummonedZombies::SummonedZombies(int x, int y)
 	moving = 1;
 }
 
-void SummonedZombies::Update()
+string SummonedZombies::Update()
 {
     if (moving) {
         static int currentFrame = 0; // Keeps track of the current frame
@@ -59,6 +59,11 @@ void SummonedZombies::Update()
 
         }
     }
+    if (x > 100) {
+        return "";
+    }
+    else
+        return "reached";
 }
 
 void SummonedZombies::Act()

@@ -13,7 +13,7 @@ FlyingZombie::FlyingZombie(int row) {
     sprite.setPosition(x, 15 + row * 100);
     moving = true;
 }
-void FlyingZombie::Update() {
+string FlyingZombie::Update() {
     if (moving) {
         texture.loadFromFile("Resources/Images/zombiesd/flying_zombie.png");
         sf::IntRect source(0, 0, 36, 58);
@@ -39,6 +39,11 @@ void FlyingZombie::Update() {
             clock.restart();
         }
     }
+    if (x > 180) {
+        return "";
+    }
+    else
+        return "reached";
 }
 void FlyingZombie::Act() {
 

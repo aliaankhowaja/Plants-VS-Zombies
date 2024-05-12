@@ -13,7 +13,7 @@ SimpleZombie::SimpleZombie(int row) {
 }
 
 //<<<<<<< HEAD
-void SimpleZombie::Update()//animations
+string SimpleZombie::Update()//animations
 {
     if (!((int)clock.getElapsedTime().asMilliseconds() % 50) && moving) {
         //sf::IntRect source(0, 0, 66, 144);
@@ -42,6 +42,11 @@ void SimpleZombie::Update()//animations
         sprite.setPosition(x, 15+ 100*row); // Update sprite position
         clock.restart();
     }
+    if (x > 160) {
+        return "";
+    }
+    else
+        return "reached";
 }
 //=======
 //void SimpleZombie::Update() { 
