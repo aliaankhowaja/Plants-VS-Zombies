@@ -40,3 +40,4 @@ int Zombie::GetX() const
 {
 	return x;
 }
+
