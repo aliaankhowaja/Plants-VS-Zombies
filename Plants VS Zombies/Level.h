@@ -55,6 +55,7 @@ public:
 	Plant* GetPlant(int row, int column);
 	void DrawPlants() const;
 	void UpdatePlants();
+	void killZombies();
 	virtual string Update() = 0;
 	virtual void Draw() const = 0;
 	void NewBullet(int x, int row);

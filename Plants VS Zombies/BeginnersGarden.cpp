@@ -77,6 +77,7 @@ string BeginnersGarden::Update()
 	GenerateSuns();
 	sunDisplay.setString(to_string(suns));
 	UpdateLawnMovers();
+	killZombies();
 	
 	//zombieFactory->Update();
 	return "";

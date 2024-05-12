@@ -7,7 +7,7 @@ private:
     sf::Clock movementC;
 public:
     FootballZombie(int row);
-    virtual void Update();
+    virtual string Update();
     virtual void Act();
    
     //virtual void GetDps();

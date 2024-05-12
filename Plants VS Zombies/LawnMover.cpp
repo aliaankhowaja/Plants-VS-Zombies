@@ -22,7 +22,9 @@ void LawnMover::Update()
 		}
 	}
 }
-
+int LawnMover::getX()const {
+	return x;
+}
 sf::Sprite& LawnMover::GetSprite()
 {
 	return sprite;

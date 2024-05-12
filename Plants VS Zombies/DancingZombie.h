@@ -10,7 +10,7 @@ private:
     SummonedZombies* ptr;
 public:
    DancingZombie(int row);
-   virtual void Update();
+   virtual string Update();
    virtual void Act();
    void summon();
   
