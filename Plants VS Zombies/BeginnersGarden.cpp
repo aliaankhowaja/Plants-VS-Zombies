@@ -12,7 +12,7 @@ BeginnersGarden::BeginnersGarden(sf::RenderWindow* window)
 	plantFactory = new PlantFactory(2, window);
 	updated = 0;
 	sunFactory = new SunFactory(window);
-	//zombie = new SimpleZombie();
+	f1 = new SimpleZombie(2);
 	
 	//zombieFactory;
 
@@ -59,12 +59,12 @@ string BeginnersGarden::Update()
 	}
 	int once = 0;
 	if (once == 0) {
-		GenerateZombies();
+		//////GenerateZombies();
 		once++;
 	}
 	
-	
-	UpdateZombies();
+	f1->Update();
+	/////////////UpdateZombies();
 	plantFactory->Update();
 	UpdatePlants();
 	UpdateBullets();
@@ -89,8 +89,8 @@ void BeginnersGarden::Draw() const
 	//window->draw(zombie->GetSprite());
 	sunFactory->Draw();
 	DrawBullets();
-	
-	DrawZombies();
+	window->draw(f1->GetSprite());
+	///DrawZombies();
 	/*for (int i = 0; i < 20; i++) {
 		cout << bullets[1][i]->GetExists();
 	}cout << endl;*/
