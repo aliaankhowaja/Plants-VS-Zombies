@@ -4,6 +4,8 @@
 #include <iostream>
 BeginnersGarden::BeginnersGarden(sf::RenderWindow* window)
 {
+	maxZombies = 15;
+	//lvlProgress = 0;
 	zombieFactory = new ZombieFactory();
 	//zombieRows[1] = ;
 	//zombieRows[3] = 2;
@@ -12,7 +14,7 @@ BeginnersGarden::BeginnersGarden(sf::RenderWindow* window)
 	plantFactory = new PlantFactory(2, window);
 	updated = 0;
 	sunFactory = new SunFactory(window);
-	f1 = new SimpleZombie(2);
+	//f1 = new SimpleZombie(2);
 	
 	//zombieFactory;
 
@@ -89,7 +91,7 @@ void BeginnersGarden::Draw() const
 	//window->draw(zombie->GetSprite());
 	sunFactory->Draw();
 	DrawBullets();
-	window->draw(f1->GetSprite());
+	//window->draw(f1->GetSprite());
 	DrawZombies();
 	/*for (int i = 0; i < 20; i++) {
 		cout << bullets[1][i]->GetExists();

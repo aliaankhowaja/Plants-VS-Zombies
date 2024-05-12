@@ -9,10 +9,10 @@
 class ZombieFactory
 {
 private:
-	int levelNum, progress;
-	int zombieRows[6];
+	//int levelNum, progress;
+	//int zombieRows[5];
 	//sf::RenderWindow* window;
-	//Zombie* zombies[6];
+	//Zombie* zombies[5];
 public:
 	ZombieFactory();
 	Zombie* NewZombie(int zombie);

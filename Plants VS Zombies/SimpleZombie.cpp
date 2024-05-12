@@ -8,7 +8,7 @@ SimpleZombie::SimpleZombie(int row) {
 	sprite.setTexture(texture);
 	sprite.setTextureRect(sf::IntRect(0, 0, 144, 144));
     speed = 5;
-	sprite.setPosition(x, row * 144);
+	sprite.setPosition(x, 15+row * 100);
 	moving = 1;
 }
 
@@ -39,7 +39,7 @@ void SimpleZombie::Update()//animations
     if ((int)clock.getElapsedTime().asSeconds() / 1 && moving)
     {
         x -= speed;
-        sprite.setPosition(x, row); // Update sprite position
+        sprite.setPosition(x, 15+ 100*row); // Update sprite position
         clock.restart();
     }
 }

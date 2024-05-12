@@ -13,7 +13,7 @@ class Level :public Screen
 {
 protected:
 	int progress;
-	static const int rows = 6, columns = 9;
+	static const int rows = 5, columns = 9;
 	sf::Text sunDisplay;
 	sf::Font font;
 	GameObject* cursor;
@@ -25,16 +25,24 @@ protected:
 	Bullet *bullets[rows][20];
 	int bulletRows[rows];
 	int suns;
-	Zombie* zombies[6][10];
+	Zombie* zombies[5][10];
 	SunFactory* sunFactory;
 	LawnMover* lawnMovers[rows];
-	sf::Clock clock;
+	sf::Clock sunClock;
+	sf::Clock zombieClock;
 	int maxZombies;
 	int generatedZombies;
-	int lvlProgress;
+	float lvlProgress;
 	bool something;
 	//delete from here
 	Zombie* zmb;
+	const int maxSpawnInterval, minSpawnInterval;
+	sf::Sprite progressBar;
+	sf::Sprite progressBarFill;
+	sf::Sprite progressBarHead;
+	sf::Texture progressBarTexture;
+	sf::Texture progressBarFillTexture;
+	sf::Texture progressBarHeadTexture;
 
 	///number of zombies in lvl====int
 	//num zombies genereated ====int 

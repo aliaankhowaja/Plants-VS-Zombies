@@ -4,7 +4,7 @@ using namespace std;
 
 
 
-Level::Level()
+Level::Level() : maxSpawnInterval(2), minSpawnInterval(1)
 {
     something = true;
     font.loadFromFile("Resources/Fonts/TheZombieBirds.ttf");
@@ -13,7 +13,8 @@ Level::Level()
     sunDisplay.setPosition(120, 0);
     sunDisplay.setString("0");
     sunDisplay.setFillColor(sf::Color::Black);
-    clock.restart();
+    sunClock.restart();
+    zombieClock.restart();
     suns = 0;
     lvlProgress = 0;
     something = true;
@@ -89,9 +90,9 @@ void Level::Shoot()
 
 void Level::GenerateSuns()
 {
-    if ((int)clock.getElapsedTime().asSeconds() / 4) {//
+    if ((int)sunClock.getElapsedTime().asSeconds() / 4) {
         sunFactory->NewSun();
-        clock.restart();
+        sunClock.restart();
     }
     for (int i = 0; i < rows; i++) {
         for (int j = 0; j < columns; j++) {
@@ -109,10 +110,35 @@ void Level::GenerateSuns()
 
 void Level::GenerateZombies()
 {
-    if (something) {
-        zombies[0][0] = zombieFactory->NewZombie(1);
-        something = false;
+
+    float spawnInterval = maxSpawnInterval - (maxSpawnInterval - minSpawnInterval) * (progress / 100.0f);
+    //cout << spawnInterval << " " << zombieClock.getElapsedTime().asSeconds() << endl;
+    // Check if it's time to generate a new zombie and if the zombie count is less than 10
+    if (zombieClock.getElapsedTime().asSeconds() >= spawnInterval && generatedZombies < maxZombies) {
+        // Generate a new zombie
+        //zombies.push_back(Zombie(/* pass necessary parameters */));
+        generatedZombies++; // Increment the zombie count
+        // Increase progress when each zombie is created
+        progress += 100/maxZombies;
+        if (progress > 100.0f) {
+            progress = 100.0f; // Ensure progress doesn't exceed 100
+        }
+        zombieClock.restart();
+        // Print debug message (optional)
+        //std::cout << "Zombie generated! Total zombies: " << generatedZombies << ", Progress: " << progress << std::endl;
+        Zombie* zombie = zombieFactory->NewZombie(1);
+        int row = zombie->GetRow();
+        for (int i = 0; i < 20; i++) {
+            if (zombies[row][i]) continue;
+            zombies[row][i] = zombie;
+            break;
+        }
     }
+
+
+    /*if (something) {
+        something = false;
+    }*/
     //TODO: Generate new zombies. Check Generate suns for reference
 
     //this code is very problematic
@@ -156,7 +182,7 @@ void Level::DrawZombies() const
 {
     //TODO: Draw the zombies in game window. Check GenerateBullets() for reference
     //this logic works i believe
-    for (int i = 0; i < 6; i++) {
+    for (int i = 0; i < 5; i++) {
         for (int j = 0; j < 10; j++) {
             if (!zombies[i][j])continue;
             window->draw(zombies[i][j]->GetSprite());
@@ -198,7 +224,7 @@ void Level::NewBullet(int column, int row)
 }
 
 void Level::DrawBullets() const{
-    for (int i = 0; i < 6; i++) {
+    for (int i = 0; i < 5; i++) {
         for (int j = 0; j < 20; j++) {
             if (!(bullets[i][j]->GetExists())) continue;
             window->draw(bullets[i][j]->GetSprite());
@@ -217,7 +243,7 @@ void Level::DrawBullets() const{
     //}
 }
 void Level::UpdateBullets() {
-    for (int i = 0; i < 6; i++) {
+    for (int i = 0; i < 5; i++) {
         for (int j = 0; j < 20; j++) {
             if (!(bullets[i][j]->GetExists())) continue;
             bullets[i][j]->Update();
