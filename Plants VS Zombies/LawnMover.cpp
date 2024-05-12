@@ -17,12 +17,12 @@ void LawnMover::Update()
 	if (used) {
 		if ((int)clock.getElapsedTime().asMilliseconds() / 20) {
 			x += 4;
-			sprite.setPosition(x, 90 + 80 * row);
+			sprite.setPosition(x, 95 + 100 * row);
 			clock.restart();
 		}
 	}
 }
-int LawnMover::getX()const {
+int LawnMover::GetX()const {
 	return x;
 }
 sf::Sprite& LawnMover::GetSprite()

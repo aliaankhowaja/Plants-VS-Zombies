@@ -4,7 +4,7 @@
 #include <iostream>
 BeginnersGarden::BeginnersGarden(sf::RenderWindow* window)
 {
-	maxZombies = 10;
+	maxZombies = 1;
 	//lvlProgress = 0;
 	zombieFactory = new ZombieFactory();
 	//zombieRows[1] = ;

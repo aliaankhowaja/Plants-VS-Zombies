@@ -42,6 +42,11 @@ string SimpleZombie::Update()//animations
         sprite.setPosition(x, 15+ 100*row); // Update sprite position
         clock.restart();
     }
+    if ((int)clock.getElapsedTime().asSeconds() / 1 && !moving) // add in other zombies
+    {
+        clock.restart();
+        return "eating";
+    }
     if (x > 160) {
         return "";
     }
@@ -104,6 +109,7 @@ string SimpleZombie::Update()//animations
 
 void SimpleZombie::Act()
 {
+    moving = 0;
 }
 
 
