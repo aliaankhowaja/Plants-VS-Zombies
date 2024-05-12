@@ -1,18 +1,50 @@
 #include "FootballZombie.h"
 FootballZombie::FootballZombie(int row) {
     name = "dancing zombie";
-    health = 500;
+    health = 1200;
     this->row = row;
     texture.loadFromFile("Resources/Images/zombiesd/football_zombie.png");
     sprite.setTexture(texture);
 
     sprite.setTextureRect(sf::IntRect(0, 70.5, 70, 70));
+    sprite.setScale(1.6, 1.6);
 
 
     speed = 0.0001;
     sprite.setPosition(x, row * 144);
     moving = true;
 }
+void FootballZombie::Act() {
+    int random = rand() % 2; // Adjusted to 2 for two possible directions
+    if (movementC.getElapsedTime().asSeconds() > 2.0f) {
+        switch (random) {
+        case 0: // Moving down
+
+            sprite.move(0, 100);
+            if (row < 200)
+                row += 100;
+            else {
+                row -= 100;
+                sprite.move(0, -100);
+            }
+                
+
+            break; // Added break statement to prevent fall-through
+        case 1: // Moving up
+            sprite.move(0, -100);
+            row -= 100;
+            if (row > 450)
+                row -= 100;
+            else {
+                row += 100;
+                sprite.move(0, +100);
+            }
+            break; // Added break statement to prevent fall-through
+        }
+        movementC.restart();
+    }
+}
+
 void FootballZombie::Update() {
     if (moving) {
         texture.loadFromFile("Resources/Images/zombiesd/football_zombie.png");
@@ -35,12 +67,13 @@ void FootballZombie::Update() {
         // Update sprite position
         sprite.setPosition(this->x -= 0.05f * speed, row);
     }
+    Act();
 }
 
 
-void FootballZombie::Act() {
 
-}
+
+
 //void FootballZombie::GetDps()
 //{
 //}

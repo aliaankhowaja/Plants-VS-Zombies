@@ -168,6 +168,7 @@
     <ClCompile Include="SimpleZombie.cpp" />
     <ClCompile Include="SnowBullet.cpp" />
     <ClCompile Include="SnowPea.cpp" />
+    <ClCompile Include="SummonedZombies.cpp" />
     <ClCompile Include="Sun.cpp" />
     <ClCompile Include="SunFactory.cpp" />
     <ClCompile Include="SunFlower.cpp" />
@@ -206,6 +207,7 @@
     <ClInclude Include="SnowBullet.h" />
     <ClInclude Include="SnowPea.h" />
     <ClInclude Include="structures.h" />
+    <ClInclude Include="SummonedZombies.h" />
     <ClInclude Include="Sun.h" />
     <ClInclude Include="SunFactory.h" />
     <ClInclude Include="SunFlower.h" />
