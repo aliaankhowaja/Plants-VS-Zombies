@@ -164,6 +164,7 @@
     <ClCompile Include="Players.cpp" />
     <ClCompile Include="QuitScreen.cpp" />
     <ClCompile Include="Repeater.cpp" />
+    <ClCompile Include="RewardScreen.cpp" />
     <ClCompile Include="Screen.cpp" />
     <ClCompile Include="SimpleZombie.cpp" />
     <ClCompile Include="SnowBullet.cpp" />
@@ -202,6 +203,7 @@
     <ClInclude Include="QuitScreen.h" />
     <ClInclude Include="Repeater.h" />
     <ClInclude Include="resource.h" />
+    <ClInclude Include="RewardScreen.h" />
     <ClInclude Include="Screen.h" />
     <ClInclude Include="SimpleZombie.h" />
     <ClInclude Include="SnowBullet.h" />

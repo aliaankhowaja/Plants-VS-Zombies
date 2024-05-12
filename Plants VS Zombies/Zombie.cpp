@@ -31,7 +31,4 @@ int Zombie::GetHealth() const {
 	return health;
 }
 
-int Zombie::getX() const
-{
-	return x;
-}
+

@@ -183,7 +183,7 @@ void Level::killZombies() {
     for (int i = 0; i < 5; i++) {
         for (int j = 0; j < 9; j++) {
             if (lawnMovers[i]->GetUsed() && zombies[i][j] != nullptr) {
-                if ((lawnMovers[i]->getX() - 80) >= (zombies[i][j]->getX())) {
+                if ((lawnMovers[i]->GetX() - 80) >= (zombies[i][j]->GetX())) {
                     delete zombies[i][j];
                     zombies[i][j] = NULL;
                 }

@@ -7,6 +7,7 @@
 #include"AddPlayerBlock.h"
 #include "NewPlayerInput.h"
 #include "PausedGame.h"
+#include"RewardScreen.h"
 #include <iostream>
 
 Game::Game()

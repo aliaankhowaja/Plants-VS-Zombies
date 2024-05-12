@@ -37,6 +37,7 @@
     <ClCompile Include="NewPlayerInput.cpp" />
     <ClCompile Include="SimpleZombie.cpp" />
     <ClCompile Include="SummonedZombies.cpp" />
+    <ClCompile Include="RewardScreen.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BeginnersGarden.h" />
@@ -76,5 +77,6 @@
     <ClInclude Include="NewPlayerInput.h" />
     <ClInclude Include="SimpleZombie.h" />
     <ClInclude Include="SummonedZombies.h" />
+    <ClInclude Include="RewardScreen.h" />
   </ItemGroup>
 </Project>
