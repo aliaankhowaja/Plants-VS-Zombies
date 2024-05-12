@@ -3,6 +3,8 @@
 class FootballZombie :
     public Zombie
 {
+private:
+    sf::Clock movementC;
 public:
     FootballZombie(int row);
     virtual void Update();

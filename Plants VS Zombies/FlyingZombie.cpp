@@ -7,7 +7,7 @@ FlyingZombie::FlyingZombie(int row) {
     sprite.setTexture(texture);
 
     sprite.setTextureRect(sf::IntRect(0, 0, 70, 70));
-
+    sprite.setScale(1.6,1.6);
 
     speed = 0.000000001;
     sprite.setPosition(x, row * 144);
