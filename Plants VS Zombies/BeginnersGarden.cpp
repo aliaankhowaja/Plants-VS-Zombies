@@ -66,7 +66,7 @@ string BeginnersGarden::Update()
 		//////GenerateZombies();
 		once++;
 	}*/
-	
+	SummonZombies();
 	GenerateZombies();
 	UpdateZombies();
 	plantFactory->Update();
@@ -93,8 +93,8 @@ void BeginnersGarden::Draw() const
 	window->draw(sunDisplay);
 	window->draw(progressBarFill);
 	window->draw(progressBar);
-
-	//window->draw(zombie->GetSprite());
+	
+	
 	sunFactory->Draw();
 	DrawZombies();
 	DrawBullets();

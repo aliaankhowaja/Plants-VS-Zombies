@@ -68,5 +68,6 @@ public:
 	void GenerateZombies();
 	void DrawZombies() const;
 	void UpdateZombies();
+	void SummonZombies();
 };
 

@@ -31,6 +31,8 @@ Zombie* ZombieFactory::NewZombie(int zombieNum)
 	case 4:
 		zombie = new FlyingZombie(row);
 		break;
+	case 5:
+		zombie = new SummonedZombies(20, 20);
 	}
 	//Zombie* zombie = new SimpleZombie(row);
 	//zombieRows[row]++;

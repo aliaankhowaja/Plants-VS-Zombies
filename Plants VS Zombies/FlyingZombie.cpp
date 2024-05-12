@@ -12,6 +12,7 @@ FlyingZombie::FlyingZombie(int row) {
     speed = 0.000000001;
     sprite.setPosition(x, 15 + row * 100);
     moving = true;
+    ready = 0;
 }
 string FlyingZombie::Update() {
     if (moving) {

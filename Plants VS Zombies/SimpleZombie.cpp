@@ -10,6 +10,7 @@ SimpleZombie::SimpleZombie(int row) {
     speed = 10;
 	sprite.setPosition(x, 15+row * 100);
 	moving = 1;
+    ready = 0;
 }
 
 //<<<<<<< HEAD

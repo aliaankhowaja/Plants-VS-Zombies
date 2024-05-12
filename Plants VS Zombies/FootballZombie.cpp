@@ -13,6 +13,7 @@ FootballZombie::FootballZombie(int row) {
     speed = 0.0001;
     sprite.setPosition(x, 15 + row * 100);
     moving = true;
+     ready = 0;
 }
 void FootballZombie::Act() {
     int random = rand() % 2; // Adjusted to 2 for two possible directions

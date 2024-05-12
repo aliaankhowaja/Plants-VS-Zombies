@@ -10,7 +10,8 @@ DancingZombie::DancingZombie(int row) {
 	sprite.setTextureRect(sf::IntRect(0, 0, 58, 74));
     sprite.setScale(1.6, 1.6);
 
-
+    //Summoned = NULL;
+    ready = 0;
 	speed = 20;
 	sprite.setPosition(x, 15 + row * 100);
 	moving = true;
@@ -22,7 +23,7 @@ void DancingZombie::Act() {
         case 0: // Moving down
 
             sprite.move(0, 100);
-            if (row < 200)
+            if (row > 200)
                 row += 100;
             else {
                 row -= 100;
@@ -34,7 +35,7 @@ void DancingZombie::Act() {
         case 1: // Moving up
             sprite.move(0, -100);
             row -= 100;
-            if (row > 450)
+            if (row < 400)
                 row -= 100;
             else {
                 row += 100;
@@ -44,17 +45,25 @@ void DancingZombie::Act() {
         }
         movementC.restart();
     }
-    ///summon();
+    summon();
 }
 void DancingZombie::summon()
 {
-    //if (SummonClock.getElapsedTime().asSeconds() > 10.0f) {
-    //    
-    //    //SUMMON
-    //    ptr = new SummonedZombies(500, 200);
-    //    SummonClock.restart();
+   
+    if (SummonClock.getElapsedTime().asSeconds() > 2.0f) {
+        ready = true;
+        cout << ".";
+       // cout << "ready true";// Set ready to true if more than 10 seconds have passed
+    }
+
+    //if (ready) {
+    //    ready = false; // Set ready to false only when it's true
+    //    //SummonClock.restart(); // Restart the clock
     //}
 }
+
+
+
 
 string DancingZombie::Update() {
     // Load texture only once (assuming it's constant)
@@ -72,7 +81,7 @@ string DancingZombie::Update() {
 
     // Update animation based on fixed time step
    
-    ////ptr->Update();
+    ////   ->Update();
 
 
     if (moving) {
@@ -101,6 +110,7 @@ string DancingZombie::Update() {
             clock.restart();
         }
     }
+    //Summoned->Update();
     Act();
     if (x > 180) {
         return "";

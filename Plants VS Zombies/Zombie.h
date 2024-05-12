@@ -10,6 +10,7 @@ protected:
 	string name;
 	double speed;
 	int health;
+	bool ready;
 	sf::Sprite sprite;
 	sf::Texture texture;
 	sf::Clock clock;
@@ -29,6 +30,8 @@ public:
 	void GetDamage(int x);
 	int GetHealth() const;
 	void Move();
+	bool getReady();
+	void setReady(bool b);
 	//int GetX() const;
 };
 
