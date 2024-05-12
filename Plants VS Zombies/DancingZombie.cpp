@@ -16,20 +16,25 @@ DancingZombie::DancingZombie(int row) {
 }
 void DancingZombie::Update() {
     if (moving) {
-        //ZombieTexture.loadFromFile("Resources/Images/zombiesd/dancing_zombie.png");
-        sf::IntRect source(0, 0, 58, 74);
+        texture.loadFromFile("Resources/Images/zombiesd/dancing_zombie.png");
+        sf::IntRect source(0, 75, 62, 80);
         sprite.setTexture(texture);
         sprite.setTextureRect(source);
-        if (clock.getElapsedTime().asSeconds() > 0.5f) {
-            sprite.setPosition(this->x -= 0.5f * speed, row); // Update sprite position
-            if (source.left < 300)
-                source.left += 50;
-            else
-                source.left = 0;
+
+        // Adjust frame index based on elapsed time
+        if (clock.getElapsedTime().asSeconds() > 0.80f) { // Adjust the time interval for smooth animation
+            if (source.left < 488) {
+                source.left += 64; // Move to the next frame
+            }
+            else {
+                source.left = 0; // Restart animation
+            }
+            sprite.setTextureRect(source);
             clock.restart();
         }
-          
-        //if ((int)clock.getElapsedTime().asSeconds() / 2)
+
+        // Update sprite position
+        sprite.setPosition(this->x -= 0.05f * speed, row);
     }
 }
 void DancingZombie::Act() {
