@@ -1,9 +1,9 @@
 #include "Repeater.h"
 #include <iostream>
-Repeater::Repeater(int row, int column) : Plant(row, column)
+Repeater::Repeater(int row, int column) : PeaShooter(row, column)
 {
 	animation = 0;
-	name = "SunFolwer";
+	name = "Peashooter";
 	texture.loadFromFile("Resources/Images/repeater.png");
 	sprite.setTexture(texture);
 	sprite.setTextureRect(sf::IntRect(0, 0, width-5, height));
@@ -18,6 +18,13 @@ void Repeater::GetDamage()
 
 bool Repeater::Act()
 {
+	shooting = true;
+	if ((int)clock.getElapsedTime().asSeconds() / 2)
+	{
+		//cout << "fd" <<endl;
+		clock.restart();
+		return true;
+	}
 	return false;
 }
 

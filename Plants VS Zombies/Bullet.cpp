@@ -18,20 +18,20 @@ Bullet::Bullet()
 	destroyed = false;
 	destroyedAnimation = 0;
 }
-Bullet::Bullet(int x, int row)
-{
-	clock.restart();
-	texture.loadFromFile("Resources/Images/pea.png");
-	sprite.setTexture(texture);
-	sprite.setPosition(x, 90 + row * 100);
-	this->row = row;
-	this->x = x;
-	this->id = bulletID;
-	bulletID++;
-	exists = true;
-	destroyed = false;
-	destroyedAnimation = 0;
-}
+//Bullet::Bullet(int x, int row)
+//{
+//	clock.restart();
+//	texture.loadFromFile("Resources/Images/pea.png");
+//	sprite.setTexture(texture);
+//	sprite.setPosition(x, 90 + row * 100);
+//	this->row = row;
+//	this->x = x;
+//	this->id = bulletID;
+//	bulletID++;
+//	exists = true;
+//	destroyed = false;
+//	destroyedAnimation = 0;
+//}
 
 sf::Sprite& Bullet::GetSprite() 
 {
@@ -58,15 +58,13 @@ void Bullet::Revive()
 	exists = true;
 	destroyed = false;
 	destroyedAnimation = 0;
-	//texture.loadFromFile("Resources/Images/pea.png");
 	sprite.setTexture(texture);
 	sprite.setTextureRect(sf::IntRect(0,0,28,28));
 }
 
-void Bullet::Hit()
+void Bullet::Hit() // bullet hit animation starts
 {
 	sprite.setTexture(splats);
-	//texture.loadFromFile("Resources/Images/peaSplats.png");
 	sprite.setTextureRect(sf::IntRect(destroyedAnimation * 24, 0, 24, 24));
 	destroyedAnimation++;
 	destroyed = true;
@@ -103,16 +101,10 @@ bool Bullet::GetDestroyed() const
 
 bool Bullet::Update()
 {
-	
-	//cout << clock.getElapsedTime().asMilliseconds() << endl;
-	if (((int)clock.getElapsedTime().asMilliseconds() / 2) && !destroyed)
+	if (((int)clock.getElapsedTime().asMilliseconds() / 2) && !destroyed) 
 	{
 		if (x > 1000) {
 			exists = false;
-			//texture.loadFromFile("Resources/Images/peaSplats.png");
-			//sprite.setTextureRect(sf::IntRect(destroyedAnimation * 24, 0, 24, 24));
-			//destroyedAnimation++;
-			//destroyed = true;
 			return exists;
 		}
 		x++;
@@ -133,8 +125,4 @@ bool Bullet::Update()
 	return exists;
 }
 
-Bullet::~Bullet()
-{
-	cout << "dsff";
-}
 

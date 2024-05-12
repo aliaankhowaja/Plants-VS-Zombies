@@ -1,4 +1,6 @@
 #include "HelpScreen.h"
+#include <iostream>
+using namespace std;
 HelpScreen::HelpScreen(sf::RenderWindow* window) {
 	this->window = window;
 	bgTexture.loadFromFile("Resources/Images/Help/WhatsApp Image 2024-05-02 at 10.29.35 PM.jpeg");
@@ -32,6 +34,19 @@ void HelpScreen::Draw() const
 
 string HelpScreen::Update()
 {
-	//return "";
-	return "StartGame";
+	int mouseX = sf::Mouse::getPosition(*window).x;
+	int mouseY = sf::Mouse::getPosition(*window).y;
+	sf::Event e;
+	while (window->pollEvent(e)) {
+		bool mouseClick = e.mouseButton.button == sf::Mouse::Left && e.type == sf::Event::MouseButtonPressed;
+
+		if (mouseClick) {
+			cout << mouseX << " " << mouseY << endl;
+			bool inRewardBounds = (mouseX > 424 && mouseX < 573) && (mouseY > 498 && mouseY < 537);
+			if (inRewardBounds)
+				return "LoadingComplete";
+			
+		}
+	}
+	return "";
 }

@@ -4,11 +4,13 @@
 #include"HelpScreen.h"
 #include"QuitScreen.h"
 #include "BeginnersGarden.h"
-#include"AddPlayerBlock.h"
 #include "NewPlayerInput.h"
 #include "PausedGame.h"
 #include"RewardScreen.h"
 #include <iostream>
+#include <fstream>
+#include "ZombieOutskirts.h"
+#include "SunFlowerFields.h"
 
 Game::Game()
 {
@@ -63,9 +65,10 @@ string Game::Update()
 
 void Game::Run()
 {
-	//Screen *loadingScreen = new LoadingScreen(window);
-	//PushScreen(loadingScreen);
-	ShowGameScreen();
+	Screen *loadingScreen = new LoadingScreen(window);
+	PushScreen(loadingScreen);
+	//ShowMainMenu();
+
 	
 	//ShowGameScreen();
 	
@@ -73,8 +76,16 @@ void Game::Run()
 	while (window->isOpen()) {
 		
 		string command = Update();
-		//if (command == "LoadingComplete") ShowMainMenu();
-		//else if (command == "StartGame") ShowGameScreen();
+		if (command == "LoadingComplete") ShowMainMenu();
+		else if (command == "Beginners Garden Compelete") ShowRewardScreen(1);
+		else if (command == "level1") ShowGameScreen(1);
+		else if (command == "Zombie Outskirts Compelete") ShowRewardScreen(2);
+		else if (command == "level2") ShowGameScreen(2);
+		else if (command == "SunFlower Fields Compelete") ShowRewardScreen(3);
+		else if (command == "level3") ShowGameScreen(3);
+		else if (command == "gameOver") ShowMainMenu();
+		else if (command == "help")ShowHelp();
+
 		while (window->pollEvent(e)) {
 			if (e.type == sf::Event::Closed) {
 				return;
@@ -83,7 +94,6 @@ void Game::Run()
 		window->clear();
 		Draw();
 		window->display();
-
 	}
 }
 
@@ -94,8 +104,54 @@ void Game::ShowMainMenu()
 	PushScreen(mainMenu);
 }
 
-void Game::ShowGameScreen() {
-	Screen* level1 = new BeginnersGarden(window);
-	//PopScreen();
-	PushScreen(level1);
+void Game::ShowGameScreen(int level) {
+	Screen* gameLevel;
+	switch (level) {
+		case 1:
+			gameLevel = new BeginnersGarden(window);
+			//PopScreen();
+			PushScreen(gameLevel);
+			break;
+		case 2:
+			gameLevel = new ZombieOutskirts(window);
+			//PopScreen();
+			PushScreen(gameLevel);
+			break;
+		case 3:
+			gameLevel = new SunFlowerFields(window);
+			//PopScreen();
+			PushScreen(gameLevel);
+			break;
+
+	}
+
+}
+
+void Game::ShowRewardScreen(int reward)
+{
+	Screen* screen;
+	switch (reward) {
+	case 1:
+		screen = new RewardScreen(1, window);
+		PopScreen();
+		PushScreen(screen);
+		break;
+	case 2:
+		screen = new RewardScreen(2, window);
+		PopScreen();
+		PushScreen(screen);
+		break;
+	case 3:
+		screen = new RewardScreen(3, window);
+		PopScreen();
+		PushScreen(screen);
+		break;
+
+	}
+}
+
+void Game::ShowHelp()
+{
+	Screen* help = new HelpScreen(window);
+	PushScreen(help);
 }

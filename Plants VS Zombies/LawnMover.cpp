@@ -15,6 +15,7 @@ LawnMover::LawnMover(int row)
 void LawnMover::Update()
 {
 	if (used) {
+		if (x > 1000) exists = false;
 		if ((int)clock.getElapsedTime().asMilliseconds() / 20) {
 			x += 4;
 			sprite.setPosition(x, 95 + 100 * row);

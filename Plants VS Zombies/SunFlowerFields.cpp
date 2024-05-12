@@ -1,12 +1,14 @@
-#include "BeginnersGarden.h"
+#include "SunFlowerFields.h"
 
-BeginnersGarden::BeginnersGarden(sf::RenderWindow* window) 
+
+#include <iostream>
+SunFlowerFields::SunFlowerFields(sf::RenderWindow* window)
 {
-	name = "BignnersGarden";
-	rewardSprite.setTextureRect(sf::IntRect(0, 140, 110, 70));
-	maxZombies = 10;
+	name = "SunFlowerFields";
+	rewardSprite.setTextureRect(sf::IntRect(0, 280, 110, 70));
+	maxZombies = 15;
 	zombieFactory = new ZombieFactory();
-	plantFactory = new PlantFactory(2, window); // 2 plants only
+	plantFactory = new PlantFactory(4, window);
 	updated = 0;
 	sunFactory = new SunFactory(window);
 	this->window = window;
@@ -16,16 +18,16 @@ BeginnersGarden::BeginnersGarden(sf::RenderWindow* window)
 	
 }
 
-string BeginnersGarden::Update()
+string SunFlowerFields::Update()
 {
 	int mouseX = sf::Mouse::getPosition(*window).x;
 	int mouseY = sf::Mouse::getPosition(*window).y;
 	sf::Event e;
 
-	if (lives <= 0) // no lifes remaining
+	if (lives <= 0)
 	{
 		while (window->pollEvent(e)) {
-			bool mouseClick = e.mouseButton.button == sf::Mouse::Left && e.type == sf::Event::MouseButtonPressed; // if left click
+			bool mouseClick = e.mouseButton.button == sf::Mouse::Left && e.type == sf::Event::MouseButtonPressed;
 
 			if (mouseClick) {
 				return "gameOver";
@@ -33,37 +35,39 @@ string BeginnersGarden::Update()
 		}
 		return "";
 	}
-	if (gamePaused) // game is paused
+	if (gamePaused)
 	{
+		//cout << mouseX << " " << mouseY << endl;
+
 		while (window->pollEvent(e)) {
 			bool mouseClick = e.mouseButton.button == sf::Mouse::Left && e.type == sf::Event::MouseButtonPressed;
 
 			if (mouseClick) {
-				if ((mouseX > 420 && mouseX < 590) && (mouseY > 370 && mouseY < 410)) return "level2";// restart
-				else if ((mouseX > 420 && mouseX < 590) && (mouseY > 420 && mouseY < 450)) return "LoadingComplete"; // main menu
-				else if ((mouseX > 360 && mouseX < 650) && (mouseY > 490 && mouseY < 550)) gamePaused = false; // back to game
+				if ((mouseX > 420 && mouseX < 590) && (mouseY > 370 && mouseY < 410)) return "level2";
+				else if ((mouseX > 420 && mouseX < 590) && (mouseY > 420 && mouseY < 450)) return "LoadingComplete";
+				else if ((mouseX > 360 && mouseX < 650) && (mouseY > 490 && mouseY < 550)) gamePaused = false;
 			}
 		}
 		return "";
 	}
-	brains.setTextureRect(sf::IntRect(0, 0, lives * 33, 31)); // showing lives
-	progressBar.setTextureRect(sf::IntRect(0, 0, 160 - 150 * (float)progress / 100, 25));// progress of level
+	brains.setTextureRect(sf::IntRect(0, 0, lives * 33, 31));
+	progressBar.setTextureRect(sf::IntRect(0, 0, 160 - 150 * (float)progress / 100, 25));
 	int row = (mouseY - 80) / 100;
 	int col = (mouseX - 230) / 80;
 	while (window->pollEvent(e)) {
 		bool mouseClick = e.mouseButton.button == sf::Mouse::Left && e.type == sf::Event::MouseButtonPressed;
 		if(mouseClick){
 			if ((mouseX > 905 && mouseX < 990) && (mouseY > 7 && mouseY < 39)) gamePaused = true;
-			if (progress >= 100) { // if level compelete
-				return "Beginners Garden Compelete";
+			if ( progress >= 100) {
+				return "SunFlower Fields Compelete";
 			}
-			suns += sunFactory->AddSuns(mouseX , mouseY); // add suns if clicked on a sun
+			suns += sunFactory->AddSuns(mouseX , mouseY);
 
 			plantFactory->SetSuns(suns);
-			if (!plantFactory->IsPlantSelected()) { // select a plant
+			if (!plantFactory->IsPlantSelected()) {
 				plantFactory->SelectPlant(mouseX, mouseY);	
 			}
-			else if(plantFactory->InGrid() && !plants[row][col]) { // place a plant
+			else if(plantFactory->InGrid() && !plants[row][col]) {
 				plants[row][col] = plantFactory->NewPlant(mouseX, mouseY);
 				if (plants[row][col]) suns = plantFactory->GetSuns();
 			}
@@ -75,6 +79,7 @@ string BeginnersGarden::Update()
 			plantFactory->UnSelectPlant(); // unselect plant
 		}
 	}
+	
 	GenerateZombies();
 	UpdateZombies();
 	plantFactory->Update();
@@ -86,10 +91,12 @@ string BeginnersGarden::Update()
 	sunDisplay.setString(to_string(suns));
 	UpdateLawnMovers();
 	killZombies();
+	
+	//zombieFactory->Update();
 	return "";
 }
 
-void BeginnersGarden::Draw() const
+void SunFlowerFields::Draw() const
 {
 	window->draw(background);
 	DrawPlants();

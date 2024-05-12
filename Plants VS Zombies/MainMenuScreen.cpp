@@ -1,4 +1,6 @@
 #include "MainMenuScreen.h"
+#include <iostream>
+using namespace std;
 
 MainMenuScreen::MainMenuScreen(sf::RenderWindow* window)
 {
@@ -70,9 +72,24 @@ void MainMenuScreen::Draw() const
 	window->draw(Quit);
 }
 
-string MainMenuScreen::Update()
-{
-	//return "";
-	return "StartGame";
+string MainMenuScreen::Update(){
+
+	int mouseX = sf::Mouse::getPosition(*window).x;
+	int mouseY = sf::Mouse::getPosition(*window).y;
+	sf::Event e;
+	while (window->pollEvent(e)) {
+		bool mouseClick = e.mouseButton.button == sf::Mouse::Left && e.type == sf::Event::MouseButtonPressed;
+
+		if (mouseClick) {
+			cout << mouseX << " " << mouseY << endl;
+			bool inRewardBounds = (mouseX > 475 && mouseX < 475+ 330) && (mouseY > 80 && mouseY < 80 + 120);
+			//cout << inRewardBounds << endl;
+			if (inRewardBounds)
+				return "level1";
+			else if ((mouseX > 718 && mouseX < 766) && (mouseY > 510 && mouseY < 566))
+				return "help";
+		}
+	}
+	return "";
 }
 

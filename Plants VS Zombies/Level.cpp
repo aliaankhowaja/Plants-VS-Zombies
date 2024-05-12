@@ -4,8 +4,56 @@ using namespace std;
 
 
 
-Level::Level() : maxSpawnInterval(5), minSpawnInterval(5)
+Level::Level() : maxSpawnInterval(15), minSpawnInterval(5)
 {
+    font.loadFromFile("Resources/Fonts/TheZombieBirds.ttf");
+
+    gameOverTexture.loadFromFile("Resources/Images/gameOver.png");
+    gameOver.setTexture(gameOverTexture);
+    gameOver.setPosition(218, 66);
+
+    BlockTexture.loadFromFile("Resources/Images/PusedGame.png");
+    Block.setTexture(BlockTexture);
+    Block.setPosition(250, 80);
+
+    //font.loadFromFile("Resources/Fonts/TheZombieBirds.ttf");
+    GamePaused.setString("GAME PAUSED");
+    GamePaused.setFont(font);
+    GamePaused.setCharacterSize(50);
+    GamePaused.setFillColor(sf::Color::Cyan);
+    GamePaused.setPosition(342, 220);
+
+    Restart.setString("RESTART");
+    Restart.setFont(font);
+    Restart.setCharacterSize(24);
+    Restart.setFillColor(sf::Color::Cyan);
+    Restart.setPosition(450, 375);
+
+    MainMenu.setString("MAIN MENU");
+    MainMenu.setFont(font);
+    MainMenu.setCharacterSize(24);
+    MainMenu.setFillColor(sf::Color::Cyan);
+    MainMenu.setPosition(440, 420);
+
+    BackToGame.setString("Back to Game");
+    BackToGame.setFont(font);
+    BackToGame.setCharacterSize(30);
+    BackToGame.setFillColor(sf::Color::Cyan);
+    BackToGame.setPosition(410, 500);
+    
+    pauseText.setFont(font);
+    pauseText.setCharacterSize(23);
+    pauseText.setPosition(920, 12);
+    pauseText.setString("Pause");
+    pauseText.setFillColor(sf::Color::White);
+
+    pauseTexture.loadFromFile("Resources/Images/options_backtogamebutton0.png");
+    pauseButton.setTexture(pauseTexture);
+    pauseButton.setPosition(905, 7);
+    pauseButton.setScale(0.25, 0.4);
+
+    gamePaused = false;
+    lives = 3;
     progressBarFillTexture.loadFromFile("Resources/Images/ProgressBarFilled.png");
     progressBarFill.setTexture(progressBarFillTexture);
     progressBarFill.setScale(1.2, 1.2);
@@ -16,17 +64,26 @@ Level::Level() : maxSpawnInterval(5), minSpawnInterval(5)
     progressBar.setScale(1.2, 1.2);
     progressBar.setPosition(700, 9);
 
+    brainsTexture.loadFromFile("Resources/Images/Brains.png");
+    brains.setTexture(brainsTexture);
+    brains.setPosition(500, 9);
+
+    sunBankTexture.loadFromFile("Resources/Images/sunBank.png");
+    sunBank.setTexture(sunBankTexture);
+    sunBank.setPosition(120, 4);
+
+    rewardTexture.loadFromFile("Resources/Images/cards.png");
+    rewardSprite.setTexture(rewardTexture);
 
     something = true;
-    font.loadFromFile("Resources/Fonts/TheZombieBirds.ttf");
     sunDisplay.setFont(font);
     sunDisplay.setCharacterSize(40);
-    sunDisplay.setPosition(120, 0);
+    sunDisplay.setPosition(175, 4);
     sunDisplay.setString("0");
     sunDisplay.setFillColor(sf::Color::Black);
     sunClock.restart();
     zombieClock.restart();
-    suns = 100;
+    suns = 0;
     lvlProgress = 0;
     something = true;
     generatedZombies = 0;
@@ -38,7 +95,6 @@ Level::Level() : maxSpawnInterval(5), minSpawnInterval(5)
     for (int i = 0; i < rows; i++) {
         for (int j = 0; j < 20; j++) {
             bullets[i][j] = new Bullet();
-            //bullets[i][j]->SetExists(false);
         }
     }
     for (int i = 0; i < rows; i++) {
@@ -58,11 +114,11 @@ Plant* Level::GetPlant(int row, int column)
     return plants[row][column];
 }
 
-void Level::DrawPlants() const
+void Level::DrawPlants() const // draw plants in window
 {
     for (int i = 0; i < rows; i++) {
         for (int j = 0; j < columns; j++) {
-            if (!plants[i][j]) continue;
+            if (!plants[i][j]) continue; // if null then continue
             window->draw(plants[i][j]->GetSprite());
         }
     }
@@ -74,12 +130,9 @@ void Level::UpdatePlants()
         for (int j = 0; j < columns; j++) {
             if (!plants[i][j]) continue;
             plants[i][j]->Update();
-            if (plants[i][j]->GetHealth() <= 0) {
+            if (plants[i][j]->GetHealth() <= 0) { // if plant died 
                 delete plants[i][j];
                 plants[i][j] = nullptr;
-                /*for (int k = 0; k < 10; k++) {
-                    zombies[i][k]->Move();
-                }*/
             }
         }
     }
@@ -91,12 +144,18 @@ void Level::Shoot()
         if (!zombieRows[i]) continue;
         for (int j = 0; j < columns; j++) {
             if (!plants[i][j]) continue;
-            if (plants[i][j]->GetName() == "PeaShooter")
+            if (plants[i][j]->GetName() == "PeaShooter") // if plant is peashooter
+                if (plants[i][j]->Act()) // after 2 seconds
+                {
+                    NewBullet(j, i); //generate a bullet
+                    //cout << "Ds";
+                }
+            if (plants[i][j]->GetName() == "CherryBomb")
                 //cout << 
                 if (plants[i][j]->Act())
                 {
-                    NewBullet(j, i);
-                    //cout << "Ds";
+                    delete plants[i][j];
+                    plants[i][j] = nullptr;
                 }
         }
     }
@@ -104,19 +163,19 @@ void Level::Shoot()
 
 void Level::GenerateSuns()
 {
-    if ((int)sunClock.getElapsedTime().asSeconds() / 4) {
+
+    
+    if ((int)sunClock.getElapsedTime().asSeconds() / 10) { // every 10 seconds
         sunFactory->NewSun();
         sunClock.restart();
     }
     for (int i = 0; i < rows; i++) {
         for (int j = 0; j < columns; j++) {
             if (!plants[i][j]) continue;
-            if (plants[i][j]->GetName() == "SunFlower")
-                //cout << 
-                if (plants[i][j]->Act())
+            if (plants[i][j]->GetName() == "SunFlower") // if sunflower
+                if (plants[i][j]->Act()) // 10 sec interval
                 {
                     sunFactory->NewSun(j, i);
-                    //cout << "Ds";
                 }
         }
     }
@@ -125,21 +184,21 @@ void Level::GenerateSuns()
 void Level::GenerateZombies()
 {
 
-    float spawnInterval = maxSpawnInterval - (maxSpawnInterval - minSpawnInterval) * (progress / 100.0f);
-    //cout << spawnInterval << " " << zombieClock.getElapsedTime().asSeconds() << endl;
-    // Check if it's time to generate a new zombie and if the zombie count is less than 10
+    float spawnInterval = maxSpawnInterval - (maxSpawnInterval - minSpawnInterval) * (progress / 100.0f); // get the spawn interval
     if (zombieClock.getElapsedTime().asSeconds() >= spawnInterval && generatedZombies < maxZombies) {
-        // Generate a new zombie
-        //zombies.push_back(Zombie(/* pass necessary parameters */));
         generatedZombies++; // Increment the zombie count
-        // Increase progress when each zombie is created
-        if (progress > 100.0f) {
-            progress = 100.0f; // Ensure progress doesn't exceed 100
-        }
+        //if (progress > 100.0f) {
+        //    progress = 100.0f; // Ensure progress doesn't exceed 100
+        //}
         zombieClock.restart();
-        // Print debug message (optional)
-        //std::cout << "Zombie generated! Total zombies: " << generatedZombies << ", Progress: " << progress << std::endl;
-        Zombie* zombie = zombieFactory->NewZombie(1);
+        int type = rand() % 4 + 1; // get random zombie
+        Zombie* zombie = nullptr;
+        if (name == "BignnersGarden") { // if level 1
+            zombie = zombieFactory->NewZombie(1); // generate normal zombie
+        }
+        else {
+            zombie = zombieFactory->NewZombie(type);
+        }
         int row = zombie->GetRow();
         for (int i = 0; i < 20; i++) {
             if (zombies[row][i]) continue;
@@ -152,8 +211,6 @@ void Level::GenerateZombies()
 
 void Level::DrawZombies() const
 {
-    //TODO: Draw the zombies in game window. Check GenerateBullets() for reference
-    //this logic works i believe
     for (int i = 0; i < 5; i++) {
         for (int j = 0; j < 10; j++) {
             if (!zombies[i][j])continue;
@@ -164,8 +221,6 @@ void Level::DrawZombies() const
 
 void Level::UpdateZombies()
 {
-    //TODO: Draw the zombies in game window. Check UpdateBullets() for reference
-    //this logic works i believe
     for (int i = 0; i < rows; i++) {
         for (int j = 0; j < 10; j++) {
 
@@ -175,20 +230,22 @@ void Level::UpdateZombies()
             int zombieCol = (zombieX-135) / 80;
             //cout << zombieCol << endl;
             string out = zombies[i][j]->Update();
-            if (out=="reached") {
+            if (out=="reached" && !(lawnMovers[i]->GetUsed())) { // if reached and lawn mover present
                 lawnMovers[i]->Use();
+            }
+            else if (out == "reached" && !(lawnMovers[i]->GetExists())) { // reached and lawn mover not present
+                lives--;
+                DeleteZombie(i, j);
             }
             if (zombieCol >= columns) break;
             if (!(plants[i][zombieCol]))
             {
-                zombies[i][j]->Move();
+                if(zombies[i][j])
+                    zombies[i][j]->Move();
                 continue;
             }
-
-            //cout << "fd";
             zombies[i][j]->Act();
             if (out == "eating") {
-                //cout << out<<endl;
                 plants[i][zombieCol]->GetDamage();
             }
         }
@@ -196,19 +253,42 @@ void Level::UpdateZombies()
     }
    
 }
+void Level::Draw() const
+{
+    window->draw(background);
+    DrawPlants();
+    DrawLawnMovers();
+    plantFactory->Draw();
+    window->draw(sunBank);
+    window->draw(sunDisplay);
+    if (progress >= 100)
+        window->draw(rewardSprite);
+    window->draw(progressBarFill);
+    window->draw(progressBar);
+    window->draw(brains);
+    sunFactory->Draw();
+    DrawZombies();
+    DrawBullets();
+}
 void Level::killZombies() {
     for (int i = 0; i < 5; i++) {
         for (int j = 0; j < 10; j++) {
-            if (lawnMovers[i]->GetUsed() && zombies[i][j] != nullptr) {
-                if ((lawnMovers[i]->GetX() - 80) >= (zombies[i][j]->GetX())) {
-                    delete zombies[i][j];
-                    zombies[i][j] = NULL;
+            if (lawnMovers[i]->GetExists() && lawnMovers[i]->GetUsed() && zombies[i][j] != nullptr) {
+                if ((lawnMovers[i]->GetX() - 80) >= (zombies[i][j]->GetX())) { // lawn mover hits zombie
+                    DeleteZombie(i, j);
                 }
             }
         }
     }
 }
 
+void Level::DeleteZombie(int i, int j) {
+    progress += 100.0 / maxZombies;
+    if (progress >= 100) rewardSprite.setPosition(zombies[i][j]->GetX(), 80 + i * 80); // last zombie
+    delete zombies[i][j];
+    zombies[i][j] = nullptr;
+    zombieRows[i]--;
+}
 
 
 void Level::NewBullet(int column, int row)
@@ -219,15 +299,6 @@ void Level::NewBullet(int column, int row)
         bullets[row][i]->SetPosition(column, row);
         break;
     }
-    //if (!bullets[row]) {
-    //    bullets[row] = new BulletContainer(x, row);
-    //} else {
-    //    BulletContainer* nextBullet = bullets[row];
-    //    while ((nextBullet->nextBullet)) {
-    //        nextBullet = nextBullet->nextBullet;
-    //    }
-    //    nextBullet->NewBullet(x, row);
-    //}
 }
 
 void Level::DrawBullets() const{
@@ -235,20 +306,8 @@ void Level::DrawBullets() const{
         for (int j = 0; j < 20; j++) {
             if (!(bullets[i][j]->GetExists())) continue;
             window->draw(bullets[i][j]->GetSprite());
-            
-            //bullets[i][j].SetExists(true);
-            //bullets[i] [j].SetPosition(column, row);
         }
     }
-    //BulletContainer* nextBullet;
-    //for (int i = 0; i < rows; i++) {
-    //    if (!bullets[i]) continue;
-    //    nextBullet = bullets[i];
-    //    while (nextBullet) {
-    //        window->draw(nextBullet->bullet->GetSprite());
-    //        nextBullet = nextBullet->nextBullet;
-    //    }
-    //}
 }
 void Level::UpdateBullets() {
     Bullet* bullet;
@@ -261,59 +320,19 @@ void Level::UpdateBullets() {
             for (int k = 0; k < 10; k++) {
                 zombie = zombies[i][k];
                 if (!zombie) continue;
-                if (!(bullet->GetDestroyed()) && (bullet->GetX() - 80) > zombie->GetX())
+                if (!(bullet->GetDestroyed()) && (bullet->GetX() - 80) > zombie->GetX()) // bullet hits zombie
                 {
                     bullet->Hit();
                     
                     zombie->GetDamage(bullet->GetDamage());
                     if (zombie->GetHealth() <= 0) {
-                        delete zombie;
-                        zombies[i][k] = nullptr;
-                        zombieRows[i]--;
-                        progress += 100 / maxZombies;
+                        DeleteZombie(i, j);
                     }
                     break;
                 }
             }
-            //bullets[i][j].SetExists(true);
-            //bullets[i] [j].SetPosition(column, row);
         }
     }
-    //BulletContainer* nextBullet;
-    //BulletContainer* prevBullet;
-    //bool first = true;
-    //for (int i = 0; i < rows; i++) {
-    //    if (!bullets[i]) continue;
-    //    nextBullet = bullets[i];
-    //    
-    //    while (nextBullet) {
-    //        cout << nextBullet->bullet->GetID() << "->";
-    //        prevBullet = nextBullet;
-    //        if(!nextBullet->bullet->Update()) {
-    //            if (first) {
-    //                if (!(prevBullet->nextBullet)) {
-    //                    delete prevBullet;
-    //                    bullets[i] = nullptr;
-    //                    break;
-    //                }
-    //                else {
-    //                    bullets[i] = nextBullet->nextBullet;
-    //                    delete nextBullet;
-    //                    nextBullet = bullets[i];
-    //                    continue;
-    //                }
-    //            }
-    //            prevBullet->nextBullet = nextBullet->nextBullet;
-    //            delete nextBullet;
-    //            nextBullet = prevBullet->nextBullet;
-    //        }
-    //        if (nextBullet) {
-    //            nextBullet = nextBullet->nextBullet;
-    //        }
-    //        first = false;
-    //    }
-    //    cout << endl;
-    //}
 }
 
 void Level::DrawLawnMovers() const

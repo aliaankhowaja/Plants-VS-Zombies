@@ -9,10 +9,12 @@
 #include "Zombie.h"
 #include "SunFactory.h"
 #include "LawnMover.h"
+
 class Level :public Screen
 {
 protected:
-	int progress;
+	string name;
+	int progress, lives;
 	static const int rows = 5, columns = 9;
 	sf::Text sunDisplay;
 	sf::Font font;
@@ -43,12 +45,26 @@ protected:
 	sf::Texture progressBarTexture;
 	sf::Texture progressBarFillTexture;
 	sf::Texture progressBarHeadTexture;
+	sf::Sprite brains;
+	sf::Texture brainsTexture;
+	sf::Sprite sunBank;
+	sf::Texture sunBankTexture;
+	sf::Sprite  rewardSprite;
+	sf::Texture rewardTexture;
+	bool gamePaused;
+	sf::Sprite pauseButton;
+	sf::Texture pauseTexture;
+	sf::Text pauseText;
 
-	///number of zombies in lvl====int
-	//num zombies genereated ====int 
-	//progressss =====int
+	sf::Sprite Block;
+	sf::Texture BlockTexture;
+	sf::Text Restart;
+	sf::Text MainMenu;
+	sf::Text BackToGame;
+	sf::Text GamePaused;
 
-	//Grid* grid;
+	sf::Texture gameOverTexture;
+	sf::Sprite gameOver;
 public:
 	Level();
 	void SetPlant(Plant* plant, int row, int column);
@@ -56,6 +72,7 @@ public:
 	void DrawPlants() const;
 	void UpdatePlants();
 	void killZombies();
+	void DeleteZombie(int i, int j);
 	virtual string Update() = 0;
 	virtual void Draw() const = 0;
 	void NewBullet(int x, int row);
@@ -68,5 +85,6 @@ public:
 	void GenerateZombies();
 	void DrawZombies() const;
 	void UpdateZombies();
+
 };
 

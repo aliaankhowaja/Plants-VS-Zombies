@@ -10,6 +10,5 @@ public:
     virtual string Update();
     virtual void Act();
    
-    //virtual void GetDps();
 };
 

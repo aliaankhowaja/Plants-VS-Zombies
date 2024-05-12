@@ -2,7 +2,7 @@
 #include <SFML/Graphics.hpp>
 class Bullet
 {
-private:
+protected:
 	sf::Clock clock;
 	sf::Sprite sprite;
 	sf::Texture texture;
@@ -12,7 +12,6 @@ private:
 public:
 	static int bulletID;
 	Bullet();
-	Bullet(int x, int row);
 	sf::Sprite& GetSprite() ;
 	int GetRow() const;
 	int GetX() const;
@@ -25,18 +24,4 @@ public:
 	int GetDamage() const;
 	bool GetDestroyed() const;
 	bool Update();
-	~Bullet();
 };
-
-//struct BulletContainer {
-//	Bullet* bullet;
-//	BulletContainer* nextBullet;
-//	BulletContainer(int x,int row) {
-//		bullet = new Bullet(x, row);
-//		nextBullet = nullptr;
-//	}
-//	void NewBullet(int x, int row) {
-//		nextBullet = new BulletContainer(x, row);
-//	}
-//
-//};

@@ -6,7 +6,7 @@ class Game
 public:
 private:
 	sf::RenderWindow* window;
-	Screen* screens[10];
+	Screen* screens[100];
 	int top;
 
 public:
@@ -21,6 +21,8 @@ public:
 	string Update();
 	void Run();
 	void ShowMainMenu();
-	void ShowGameScreen();
+	void ShowGameScreen(int level);
+	void ShowRewardScreen(int reward);
+	void ShowHelp();
 };
 

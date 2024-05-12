@@ -1,8 +1,9 @@
 #pragma once
 #include "Plant.h"
-class Repeater : public Plant
+#include "PeaShooter.h"
+class Repeater : public PeaShooter
 {
-private:int upfd;
+
 public:
 	Repeater(int row, int column);
 	virtual void GetDamage();
