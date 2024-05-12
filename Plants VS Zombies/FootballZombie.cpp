@@ -45,10 +45,7 @@ void FootballZombie::Act() {
     }
 }
 
-void FootballZombie::GetDamage(int x)
-{
-    this->health -= x;
-}
+
 
 void FootballZombie::Update() {
     if (moving) {

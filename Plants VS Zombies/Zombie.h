@@ -25,5 +25,6 @@ public:
 	//virtual void GetDps() = 0;
 	virtual void Act() = 0;
 	int GetRow();
+	void GetDamage(int x);
 };
 

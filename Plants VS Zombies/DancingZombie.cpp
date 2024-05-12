@@ -55,10 +55,7 @@ void DancingZombie::summon()
     //    SummonClock.restart();
     //}
 }
-void DancingZombie::GetDamage(int x)
-{
-    this->health -= x;
-}
+
 void DancingZombie::Update() {
     // Load texture only once (assuming it's constant)
     static sf::Texture texture; // Declare texture as static

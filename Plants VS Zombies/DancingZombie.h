@@ -13,7 +13,7 @@ public:
    virtual void Update();
    virtual void Act();
    void summon();
-   void GetDamage(int x);
+  
    //virtual void GetDps();
 };
 

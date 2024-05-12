@@ -16,3 +16,9 @@ int Zombie::GetRow()
 {
 	return row;
 }
+
+void Zombie::GetDamage(int x)
+{
+	this->health -= x;
+
+}

@@ -43,10 +43,7 @@ void FlyingZombie::Update() {
 void FlyingZombie::Act() {
 
 }
-void FlyingZombie::GetDamage(int x)
-{
-    this->health -= x;
-}
+
 //void FlyingZombie::GetDps()
 //{
 //}
