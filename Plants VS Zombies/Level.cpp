@@ -4,7 +4,7 @@ using namespace std;
 
 
 
-Level::Level() : maxSpawnInterval(10), minSpawnInterval(5)
+Level::Level() : maxSpawnInterval(5), minSpawnInterval(5)
 {
     progressBarFillTexture.loadFromFile("Resources/Images/ProgressBarFilled.png");
     progressBarFill.setTexture(progressBarFillTexture);
@@ -30,10 +30,6 @@ Level::Level() : maxSpawnInterval(10), minSpawnInterval(5)
     lvlProgress = 0;
     something = true;
     generatedZombies = 0;
-    //////////MAX ZOMBIES/////////
-    //maxZombies = 10;
-   //grid = new Grid(window);
-    //plantFactory = new PlantFactory(2, )
     for (int i = 0; i < rows; i++) {
         for (int j = 0; j < columns; j++) {
             plants[i][j] = nullptr;
@@ -78,6 +74,13 @@ void Level::UpdatePlants()
         for (int j = 0; j < columns; j++) {
             if (!plants[i][j]) continue;
             plants[i][j]->Update();
+            if (plants[i][j]->GetHealth() <= 0) {
+                delete plants[i][j];
+                plants[i][j] = nullptr;
+                /*for (int k = 0; k < 10; k++) {
+                    zombies[i][k]->Move();
+                }*/
+            }
         }
     }
 }
@@ -161,19 +164,33 @@ void Level::DrawZombies() const
 
 void Level::UpdateZombies()
 {
-    
     //TODO: Draw the zombies in game window. Check UpdateBullets() for reference
     //this logic works i believe
     for (int i = 0; i < rows; i++) {
-        for (int j = 0; j < columns; j++) {
-            if (!zombies[i][j]) continue;
-           cout<< zombies[i][j]->Update();
-           if (!zombies[i][j]->Update().empty()) {
-               lawnMovers[i]->Use();
-              
-           }
-              
+        for (int j = 0; j < 10; j++) {
 
+            if (!zombies[i][j]) continue;
+            //cout<< zombies[i][j]->Update();
+            int zombieX = zombies[i][j]->GetX();
+            int zombieCol = (zombieX-135) / 80;
+            //cout << zombieCol << endl;
+            string out = zombies[i][j]->Update();
+            if (out=="reached") {
+                lawnMovers[i]->Use();
+            }
+            if (zombieCol >= columns) break;
+            if (!(plants[i][zombieCol]))
+            {
+                zombies[i][j]->Move();
+                continue;
+            }
+
+            //cout << "fd";
+            zombies[i][j]->Act();
+            if (out == "eating") {
+                //cout << out<<endl;
+                plants[i][zombieCol]->GetDamage();
+            }
         }
         
     }
@@ -181,7 +198,7 @@ void Level::UpdateZombies()
 }
 void Level::killZombies() {
     for (int i = 0; i < 5; i++) {
-        for (int j = 0; j < 9; j++) {
+        for (int j = 0; j < 10; j++) {
             if (lawnMovers[i]->GetUsed() && zombies[i][j] != nullptr) {
                 if ((lawnMovers[i]->GetX() - 80) >= (zombies[i][j]->GetX())) {
                     delete zombies[i][j];

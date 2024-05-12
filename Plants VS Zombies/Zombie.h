@@ -25,8 +25,10 @@ public:
 	//virtual void GetDps() = 0;
 	virtual void Act() = 0;
 	int GetRow();
-	int GetX();
+	int GetX() const;
 	void GetDamage(int x);
 	int GetHealth() const;
+	void Move();
+	//int GetX() const;
 };
 

@@ -17,10 +17,10 @@ int Zombie::GetRow()
 	return row;
 }
 
-int Zombie::GetX()
-{
-	return x;
-}
+//int Zombie::GetX()
+//{
+//	return x;
+//}
 
 void Zombie::GetDamage(int d)
 {
@@ -31,4 +31,13 @@ int Zombie::GetHealth() const {
 	return health;
 }
 
+void Zombie::Move()
+{
+	moving = 1;
+}
+
+int Zombie::GetX() const
+{
+	return x;
+}
 

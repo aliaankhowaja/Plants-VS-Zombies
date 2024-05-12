@@ -13,11 +13,12 @@ protected:
 	sf::Clock clock;
 public:
 	Plant(int row, int column);
-	virtual void GetDamage() = 0;
+	void GetDamage();
 	virtual bool Act() = 0;
 	sf::Sprite& GetSprite();
 	string GetName() const;
 	virtual void Update() = 0;
+	int GetHealth() const;
 
 };
 

@@ -14,7 +14,7 @@ public:
 	void Update();
 	sf::Sprite& GetSprite();
 	void Use();
-	int GetX();
+	int GetX()const;
 	bool GetExists() const;
 	bool GetUsed() const;
 };
