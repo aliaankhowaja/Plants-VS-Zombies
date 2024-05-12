@@ -57,13 +57,13 @@ string BeginnersGarden::Update()
 			plantFactory->UnSelectPlant(); // unselect plant
 		}
 	}
-	int once = 0;
+	/*int once = 0;
 	if (once == 0) {
 		GenerateZombies();
 		once++;
-	}
+	}*/
 	
-	
+	GenerateZombies();
 	UpdateZombies();
 	plantFactory->Update();
 	UpdatePlants();

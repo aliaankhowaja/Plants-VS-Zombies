@@ -14,6 +14,7 @@ protected:
 	sf::Texture texture;
 	sf::Clock clock;
 	bool moving;
+	int animation;
 	int x, row;
 
 public:

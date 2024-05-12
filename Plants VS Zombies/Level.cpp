@@ -6,7 +6,7 @@ using namespace std;
 
 Level::Level()
 {
-
+    something = true;
     font.loadFromFile("Resources/Fonts/TheZombieBirds.ttf");
     sunDisplay.setFont(font);
     sunDisplay.setCharacterSize(40);
@@ -16,9 +16,10 @@ Level::Level()
     clock.restart();
     suns = 0;
     lvlProgress = 0;
+    something = true;
     generatedZombies = 0;
     //////////MAX ZOMBIES/////////
-    maxZombies = 10;
+    //maxZombies = 10;
    //grid = new Grid(window);
     //plantFactory = new PlantFactory(2, )
     for (int i = 0; i < rows; i++) {
@@ -88,7 +89,7 @@ void Level::Shoot()
 
 void Level::GenerateSuns()
 {
-    if ((int)clock.getElapsedTime().asSeconds() / 10) {
+    if ((int)clock.getElapsedTime().asSeconds() / 4) {//
         sunFactory->NewSun();
         clock.restart();
     }
@@ -108,6 +109,10 @@ void Level::GenerateSuns()
 
 void Level::GenerateZombies()
 {
+    if (something) {
+        zombies[0][0] = zombieFactory->NewZombie(1);
+        something = false;
+    }
     //TODO: Generate new zombies. Check Generate suns for reference
 
     //this code is very problematic
@@ -154,8 +159,7 @@ void Level::DrawZombies() const
     for (int i = 0; i < 6; i++) {
         for (int j = 0; j < 10; j++) {
             if (!zombies[i][j])continue;
-            else
-                window->draw(zombies[i][j]->GetSprite());
+            window->draw(zombies[i][j]->GetSprite());
         }
     }
 }
