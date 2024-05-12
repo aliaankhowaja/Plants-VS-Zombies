@@ -95,7 +95,7 @@ void Game::ShowMainMenu()
 }
 
 void Game::ShowGameScreen() {
-	Screen* level1 = new BeginnersGarden(window);
+	Screen* level1 = new LoadingScreen(window);
 	//PopScreen();
 	PushScreen(level1);
 }

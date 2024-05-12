@@ -34,5 +34,12 @@ void RewardScreen::Draw() const
 
 string RewardScreen::Update()
 {
+	sf::Event e;
+	while (window->pollEvent(e)) {
+		if (e.type == sf::Event::MouseButtonPressed) {
+
+
+		}
+	}
 	return "";
 }

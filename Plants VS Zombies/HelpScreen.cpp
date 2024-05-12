@@ -32,6 +32,16 @@ void HelpScreen::Draw() const
 
 string HelpScreen::Update()
 {
+	sf::Event e;
+	while (window->pollEvent(e)) {
+		if (e.type == sf::Event::MouseButtonPressed) {
+
+
+		}
+	}
+	return "";
+
+
 	//return "";
 	return "StartGame";
 }
