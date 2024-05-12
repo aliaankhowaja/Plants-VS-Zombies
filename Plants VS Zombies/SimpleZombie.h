@@ -8,5 +8,6 @@ public:
     virtual void Update();
     //virtual void GetDps();
     virtual void Act();
+    void GetDamage(int x);
 };
 

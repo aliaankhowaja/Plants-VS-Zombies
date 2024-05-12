@@ -11,7 +11,7 @@ FootballZombie::FootballZombie(int row) {
 
 
     speed = 0.0001;
-    sprite.setPosition(x, row * 144);
+    sprite.setPosition(x, 15 + row * 100);
     moving = true;
 }
 void FootballZombie::Act() {
@@ -45,6 +45,11 @@ void FootballZombie::Act() {
     }
 }
 
+void FootballZombie::GetDamage(int x)
+{
+    this->health -= x;
+}
+
 void FootballZombie::Update() {
     if (moving) {
         texture.loadFromFile("Resources/Images/zombiesd/football_zombie.png");
@@ -65,7 +70,12 @@ void FootballZombie::Update() {
         }
 
         // Update sprite position
-        sprite.setPosition(this->x -= 0.05f * speed, row);
+        if ((int)clock.getElapsedTime().asSeconds() / 1 && moving)
+        {
+            x -= speed;
+            sprite.setPosition(x, 15 + 100 * row); // Update sprite position
+            clock.restart();
+        }
     }
     Act();
 }

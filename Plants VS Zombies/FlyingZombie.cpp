@@ -10,7 +10,7 @@ FlyingZombie::FlyingZombie(int row) {
     sprite.setScale(1.6,1.6);
 
     speed = 0.000000001;
-    sprite.setPosition(x, row * 144);
+    sprite.setPosition(x, 15 + row * 100);
     moving = true;
 }
 void FlyingZombie::Update() {
@@ -32,12 +32,20 @@ void FlyingZombie::Update() {
             clock.restart();
         }
 
-        // Update sprite position
-        sprite.setPosition(this->x -= 0.05f * speed, row);
+        if ((int)clock.getElapsedTime().asSeconds() / 1 && moving)
+        {
+            x -= speed;
+            sprite.setPosition(x, 15 + 100 * row); // Update sprite position
+            clock.restart();
+        }
     }
 }
 void FlyingZombie::Act() {
 
+}
+void FlyingZombie::GetDamage(int x)
+{
+    this->health -= x;
 }
 //void FlyingZombie::GetDps()
 //{

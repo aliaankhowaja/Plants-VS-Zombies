@@ -100,3 +100,8 @@ void SimpleZombie::Update()//animations
 void SimpleZombie::Act()
 {
 }
+
+void SimpleZombie::GetDamage(int x)
+{
+    this->health -= x;
+}
